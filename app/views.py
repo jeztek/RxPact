@@ -1,7 +1,7 @@
 import time, pytz
 from itertools import chain, groupby
 from operator import attrgetter
-from datetime import datetime, time
+import datetime
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -19,7 +19,7 @@ from account.forms import Timezone as TimezoneForm
 
 
 # Return JSON encoded representation of object as text response
-dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime) or isinstance(obj, time) else None
+dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime.datetime) or isinstance(obj, datetime.time) else None
 def JsonResponse(obj):
     return HttpResponse(json.dumps(obj, ensure_ascii=False, default=dthandler),
                         mimetype="text/plain; charset=\"utf-8\"")
@@ -63,7 +63,7 @@ def meds(request):
     # hash by time
     keyfunc = attrgetter('time_scheduled')    
     user_med_times = sorted(user_med_times, key=keyfunc)
-    for (time, meds) in groupby(user_med_times, keyfunc):
-        schedule.append({ "time" : time, "meds" : [m.user_med.medication.name for m in meds]})
+    for (t, meds) in groupby(user_med_times, keyfunc):
+        schedule.append({ "time" : t, "meds" : [m.user_med.medication.name for m in meds]})
 
     return JsonResponse({'schedule' : schedule})
