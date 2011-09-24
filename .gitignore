@@ -2,4 +2,4 @@
 #*
 *.pyc
 rxpact.db
-
+local_settings.py

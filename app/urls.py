@@ -8,4 +8,6 @@ urlpatterns = patterns('app.views',
     (r'^contact/$', 'contact'),
 
     (r'^/$', 'home'),
+
+    (r'^json/meds/$', 'meds'),
 )
