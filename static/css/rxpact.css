@@ -2,25 +2,25 @@ body {
     font-family: arial, verdana, sans-serif;
     font-size: 12pt;
     color: #000;
-    margin: 0px;
-    padding: 0px;
     background-color: #FFF;
+    margin: 0px auto;
+    padding: 0px;
     text-align: center;
+    width: 1024px;
 }
 
 img { border: 0px }
 
 #container {
     text-align: left;
-    margin: 10px 80px 0px 80px;
 }
 
 #title {
     font-size: 12pt;
     font-weight: bold;
-    color: #000;
+    color: #1A5959;
     padding: 6px 4px;
-    background-color: #AAA;
+    background-color: #63A120;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -42,40 +42,5 @@ img { border: 0px }
 
 #content {
     margin-top: 10px;
-    padding: 6px 4px;
-    background-color: #DDD;
-}
-
-#footer {
-    font-size: 10pt;
-    margin-top: 10px;
-//    float: center;
-}
-
-#footer ul {
-    background-color: #DDD;
-    width: 100%;
-    margin: 0px;
-    padding: 2px 0px;
-    list-style: none;
-    float: left;
-    text-align: center;
-//    border-bottom: 1px solid #ccc;
-//    border-top: 1px solid #ccc;
-}
-
-#footer ul li {
-    float: left;
-    padding: 0px 40px;
-}
-
-#footer ul li a {
-    color: #000;
-    text-decoration: none;
-}
-
-
-#footer ul li a:hover {
-    color: #D00;
-//    background-color: #fff;
+    //padding: 6px 4px;
 }

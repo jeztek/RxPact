@@ -4,12 +4,46 @@
 
 <style>
 
+.pane {
+  color: #000;
+//  margin: 10px;
+  border: 1px solid #000;
+}
+
+.left-pane {
+  width: 500px;
+  margin-left: 5px;
+  float: left;  
+}
+
+.right-pane {
+  width: 500px;
+  margin-right: 5px;
+  float: right;
+}
+
+.medication {
+
+}
+
+.medication .you_time {
+  font-size: 3em;
+}
+
+.medication .you_med {
+  font-size: 1em;
+}
+
+.medication .you_med img {
+
+}
+
 </style>
 
 <script>
 
   jQuery(function() {
-    $("#you").html("Hello world!");
+  //$("#you").html("Hello world!");
   });
 
 </script>
@@ -18,8 +52,24 @@
 
 {% block body %}
 
-<div class="left-pane" id="you"></div>
-</div class="right-pane" id="network"></div>
+<div class="pane left-pane" id="you">
+  <div class="medication">
+    <span class="you_time">12:30PM</span>
+    <span class="you_med">
+      <img src="http://placekitten.com/120/120">Azithromycin</img>
+      <img src="http://placekitten.com/120/120">Azithromycin</img>
+      <img src="http://placekitten.com/120/120">Azithromycin</img>
+    </span>
+  </div>
+
+</div>
+
+<div class="pane right-pane" id="network">
+  <table>
+    <tr><td>Test</td><td>Test 2</td></tr>
+    <tr><td>Eric</td></tr>
+	
+</div>
 
 {% endblock body %}
 

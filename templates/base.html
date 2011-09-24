@@ -4,7 +4,7 @@
 <head>
 <meta charset="utf-8" />
   
-<title>{% block title %}RxPact{% endblock title %}</title>
+<title>{% block title %}rxpact{% endblock title %}</title>
 
 <link rel="stylesheet" href="/static/css/rxpact.css" />
 <script src="/static/js/jquery.js"></script>
@@ -14,7 +14,7 @@
 <body>
   <div id="container">
     <div id="title">
-      <a href="/">RxPact</a>
+      <a href="/">rxpact</a>
 
       <span id="user_bar">
 	{% if user.is_authenticated %}
@@ -25,13 +25,6 @@
     </div>
     <div id="content">
       {% block body %}{% endblock body %}
-    </div>
-    <div id="footer">
-      <ul>
-	<li><a href="/about/">About</li>
-	<li><a href="/blog/">Blog</li>
-	<li><a href="/contact/">Contact</li>
-      </ul>
     </div>
   </div>
 </body>
