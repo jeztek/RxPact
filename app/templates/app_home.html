@@ -4,12 +4,55 @@
 
 <style>
 
+.pane {
+  color: #000;
+//  margin: 10px;
+//  border: 1px solid #000;
+}
+
+.left-pane {
+  width: 500px;
+  margin-left: 5px;
+  float: left;  
+}
+
+.right-pane {
+  width: 500px;
+  margin-right: 5px;
+  float: right;
+}
+
+.medication {
+
+}
+
+.medication .you_time {
+  font-size: 3em;
+  float: left;
+}
+
+.medication .you_med {
+  float: right;
+  font-size: 1em;
+}
+
+.medication .you_med div {
+  padding-right: 50px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.medication .you_med div img {
+  vertical-align:middle;
+}
+
 </style>
 
 <script>
 
   jQuery(function() {
-    $("#you").html("Hello world!");
+  $("img").corner();
+  //$("#you").html("Hello world!");
   });
 
 </script>
@@ -18,8 +61,34 @@
 
 {% block body %}
 
-<div class="left-pane" id="you"></div>
-</div class="right-pane" id="network"></div>
+<div class="pane left-pane" id="you">
+  <div class="medication">
+    <span class="you_time">12:30PM</span>
+    <span class="you_med">
+      <div><img src="http://placekitten.com/64/64" /><br />Zoloft</div>
+      <div><img src="http://placekitten.com/64/64" /><br />Azithromycin</div>
+      <div><img src="http://placekitten.com/64/64" /><br />Clindamycin</div>
+    </span>
+  </div>
+
+</div>
+
+<div class="pane right-pane" id="network">
+  <div id="network_title">My Network</div>
+  <table>
+    <tr>
+      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
+      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
+      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
+    </tr>
+    <tr>
+      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
+      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
+      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
+    </tr>
+
+  </table>
+</div>
 
 {% endblock body %}
 
