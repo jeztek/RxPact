@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+      <div id="login_form">
+	{% if message %}
+	<div id="message">{{ message }}</div>
+	{% endif %}
+
+	<form action="/account/login/" method="post">
+	  {% csrf_token %}
+	  <div>
+	    {% for field in form %}
+	    <div>
+	      {{ field.errors }}
+	      {{ field.label_tag }}<br />
+	      {{ field }}
+	    </div>
+	    {% endfor %}
+	  </div>
+	  <input type="submit" value="Sign in" /><br />
+	</form>
+      </div>
+
+{% endblock body %}

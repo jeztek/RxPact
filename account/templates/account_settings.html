@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+
+      {% if message %}
+      <div id="message">{{ message }}</div>
+      {% endif %}
+
+      <form action="{% url account.views.settings %}" method="post">
+	{% csrf_token %}
+	<div id="timezone">
+	  Time zone: {{ timezoneForm.tz }}
+	</div>
+	<input type="submit" value="Save" />
+      </form>
+      <a href="/">Cancel</a>
+{% endblock body %}
