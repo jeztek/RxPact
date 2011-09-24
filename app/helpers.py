@@ -1,6 +1,6 @@
 import calendar, pytz
 from datetime import datetime
-import parsedatetime.parsedatetime as pdt
+#import parsedatetime.parsedatetime as pdt
 
 def stringToEpochMilli(input, timezone):
     p = pdt.Calendar()

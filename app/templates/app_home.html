@@ -2,7 +2,24 @@
 
 {% block head %}
 
-Hello world!
+<style>
+
+</style>
+
+<script>
+
+  jQuery(function() {
+    $("#you").html("Hello world!");
+  });
+
+</script>
+
+{% endblock head %}
+
+{% block body %}
+
+<div class="left-pane" id="you"></div>
+</div class="right-pane" id="network"></div>
 
 {% endblock body %}
 

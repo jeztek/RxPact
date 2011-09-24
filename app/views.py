@@ -42,4 +42,3 @@ def home(request, message=None):
         'message'      : message,
     }, context_instance = RequestContext(request))
                               
-

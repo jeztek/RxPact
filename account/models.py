@@ -8,5 +8,5 @@ class UserProfile(models.Model):
     tz   = models.CharField(max_length=50, choices=TimezoneForm.choices)
 
     def __unicode__(self):
-        return self.user.email
+        return self.user.username
 
