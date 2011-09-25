@@ -125,14 +125,19 @@
 #msg_send {
   display: none;
   width: 280px;
-  height: 160px;
+  height: 280px;
   padding-top: 20px;
   background-color: #63A120;
 }
 
-#msg_send #msg_body {
+
+#msg_body #post_med_msg_body {
   width: 240px;
   height: 100px;
+}
+
+#post_msg_container{
+  margin-top: 40px;
 }
 
 #congrats {
@@ -375,7 +380,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
 <div id="msg_send">
   <div id="msg_container">
-    <div id="msg_title">Send a cheery message</div>
+    <div id="msg_title">Send a gentle reminder</div>
     <div id="msg_to"></div>
     <form action="#" method="post" onSubmit=RXPACT.sendSms()>
       {% csrf_token %}
@@ -384,6 +389,17 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
       </div>
 
       <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
+    </form>
+  </div>
+  <div id = "post_msg_container">
+	<div id="post_med_msg_title">Leave a message for after they take their meds</div>
+    <div id="post_med_msg_to"></div>
+	<form action="#" method="post" onSubmit=RXPACDT.savePostMedMsg()>
+		{% csrf_token %}
+		<div>
+			<textarea id="post_med_msg_body"></textarea>
+		</div>
+	    <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
     </form>
   </div>
 </div>
