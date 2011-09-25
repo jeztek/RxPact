@@ -539,6 +539,7 @@ function simulate_friends_taking_meds() {
           meds_success({{ user_network.1.link.id }});
           window.setTimeout(function() {
 
+            $("#time_slot_1").css("display", "none");
             set_time_to(17, 43);	  
             simulate_friends_forgetting_meds();
 	  
@@ -664,7 +665,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 		<div>
 			<textarea id="post_med_msg_body"></textarea>
 		</div>
-	    <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="$('#msg_send').trigger('close');" style="font-size: 0.8em">Cancel</a></span>
+	    <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="#" onClick="$('#msg_send').trigger('close');" style="font-size: 0.8em">Cancel</a></span>
     </form>
   </div>
 </div>
