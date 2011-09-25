@@ -158,14 +158,18 @@ function set_times() {
       $("#time_slot_" + i).addClass("past");
     } else if (minutes_away < 60) {
       $("#time_slot_" + i).find(".you_time").html("<div class='you_relative_time'>in " + minutes_away + " minutes</div>");
+    } else {
+      $("#time_slot_" + i).find(".you_time").html('');
     }
   }
 }
 
-function set_current(t) {
-  h, m = t.split(":");
-  current_time.setHours(h);
-  current_time.setMinutes(m);
+function set_current() {
+  var t = prompt("Enter time, e.g. 10:38 or 15:05");
+  var parts = t.split(":");
+  current_time.setHours(parts[0]);
+  current_time.setMinutes(parts[1]);
+  set_times();
 }
 
 jQuery(function() {
@@ -177,6 +181,7 @@ jQuery(function() {
 
 });
 
+// advance current time on a timer
 window.setInterval(function() {  
   current_time.setTime(current_time.getTime() + 10000);
   set_times();
@@ -189,7 +194,7 @@ window.setInterval(function() {
 {% block body %}
 
 <div id="header">
-Welcome {{ user.first_name }}! Current time is <span id="current_time"></span>
+Welcome {{ user.first_name }}! Current time is <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">set</a>
 </div>
 
 <br style="clear: both;" />

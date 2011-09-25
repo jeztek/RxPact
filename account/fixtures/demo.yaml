@@ -1,0 +1,643 @@
+- fields: {app_label: contenttypes, model: contenttype, name: content type}
+  model: contenttypes.contenttype
+  pk: 5
+- fields: {app_label: auth, model: group, name: group}
+  model: contenttypes.contenttype
+  pk: 2
+- fields: {app_label: admin, model: logentry, name: log entry}
+  model: contenttypes.contenttype
+  pk: 8
+- fields: {app_label: account, model: medication, name: medication}
+  model: contenttypes.contenttype
+  pk: 10
+- fields: {app_label: auth, model: message, name: message}
+  model: contenttypes.contenttype
+  pk: 4
+- fields: {app_label: auth, model: permission, name: permission}
+  model: contenttypes.contenttype
+  pk: 1
+- fields: {app_label: sessions, model: session, name: session}
+  model: contenttypes.contenttype
+  pk: 6
+- fields: {app_label: sites, model: site, name: site}
+  model: contenttypes.contenttype
+  pk: 7
+- fields: {app_label: auth, model: user, name: user}
+  model: contenttypes.contenttype
+  pk: 3
+- fields: {app_label: account, model: usermedication, name: user medication}
+  model: contenttypes.contenttype
+  pk: 11
+- fields: {app_label: account, model: usermedicationlog, name: user medication log}
+  model: contenttypes.contenttype
+  pk: 13
+- fields: {app_label: account, model: usermedicationschedule, name: user medication
+      schedule}
+  model: contenttypes.contenttype
+  pk: 12
+- fields: {app_label: account, model: userprofile, name: user profile}
+  model: contenttypes.contenttype
+  pk: 9
+- fields: {expire_date: !!timestamp '2011-10-09 04:11:26.179522', session_data: 'gAJ9cQEoVQ1fYXV0aF91c2VyX2lkcQJLAVUSX2F1dGhfdXNlcl9iYWNrZW5kcQNVKWRqYW5nby5j
+
+      b250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kcQR1LjE1NmRiMTFhZWYwYTY4YmRhNDli
+
+      MmQwMGIzZTE0YTJm
+
+      '}
+  model: sessions.session
+  pk: 12fb2bbb11e2a4f3821ff994e92178b3
+- fields: {expire_date: !!timestamp '2011-10-09 05:19:45.757749', session_data: 'gAJ9cQEoVQp0ZXN0Y29va2llcQJVBndvcmtlZHEDVQ1fYXV0aF91c2VyX2lkcQRLAlUSX2F1dGhf
+
+      dXNlcl9iYWNrZW5kcQVVKWRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5k
+
+      cQZ1LjM5OTc0OTMwN2VjOGQ2MTNlYjBiNmIzYTAyODRjZTQ3
+
+      '}
+  model: sessions.session
+  pk: 0e7a16cc5529181aa93411a10567aea4
+- fields: {domain: example.com, name: example.com}
+  model: sites.site
+  pk: 1
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:05:22.815016',
+    change_message: '', content_type: 12, object_id: '18', object_repr: 'martha.landis@gmail.com
+      ibuprofen @ 20:00:00', user: 1}
+  model: admin.logentry
+  pk: 59
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:05:10.571083',
+    change_message: '', content_type: 12, object_id: '17', object_repr: 'martha.landis@gmail.com
+      Zocor @ 20:00:00', user: 1}
+  model: admin.logentry
+  pk: 58
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:04:56.966522',
+    change_message: '', content_type: 12, object_id: '16', object_repr: 'martha.landis@gmail.com
+      trazodone @ 20:00:00', user: 1}
+  model: admin.logentry
+  pk: 57
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:04:13.844377',
+    change_message: '', content_type: 12, object_id: '15', object_repr: 'martha.landis@gmail.com
+      metformin @ 20:00:00', user: 1}
+  model: admin.logentry
+  pk: 56
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:03:54.550802',
+    change_message: '', content_type: 12, object_id: '14', object_repr: 'martha.landis@gmail.com
+      Prilosec @ 18:00:00', user: 1}
+  model: admin.logentry
+  pk: 55
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:03:37.779002',
+    change_message: '', content_type: 12, object_id: '13', object_repr: 'martha.landis@gmail.com
+      ibuprofen @ 12:00:00', user: 1}
+  model: admin.logentry
+  pk: 54
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:03:18.038958',
+    change_message: '', content_type: 12, object_id: '12', object_repr: 'martha.landis@gmail.com
+      Prilosec @ 12:00:00', user: 1}
+  model: admin.logentry
+  pk: 53
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:03:01.393009',
+    change_message: '', content_type: 12, object_id: '11', object_repr: 'martha.landis@gmail.com
+      metformin @ 08:00:00', user: 1}
+  model: admin.logentry
+  pk: 52
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:02:39.554928',
+    change_message: '', content_type: 11, object_id: '13', object_repr: martha.landis@gmail.com
+      metformin, user: 1}
+  model: admin.logentry
+  pk: 51
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 04:02:08.250124',
+    change_message: Changed dosage., content_type: 12, object_id: '10', object_repr: 'martha.landis@gmail.com
+      ibuprofen @ 08:00:00', user: 1}
+  model: admin.logentry
+  pk: 50
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:01:54.694183',
+    change_message: '', content_type: 12, object_id: '10', object_repr: 'martha.landis@gmail.com
+      ibuprofen @ 08:00:00', user: 1}
+  model: admin.logentry
+  pk: 49
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:01:38.977296',
+    change_message: '', content_type: 12, object_id: '9', object_repr: 'martha.landis@gmail.com
+      Microzide @ 08:00:00', user: 1}
+  model: admin.logentry
+  pk: 48
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:01:18.627960',
+    change_message: '', content_type: 12, object_id: '8', object_repr: 'martha.landis@gmail.com
+      Atenolol @ 08:00:00', user: 1}
+  model: admin.logentry
+  pk: 47
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:01:04.479963',
+    change_message: '', content_type: 12, object_id: '7', object_repr: 'martha.landis@gmail.com
+      Prozac @ 08:00:00', user: 1}
+  model: admin.logentry
+  pk: 46
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:59:46.858384',
+    change_message: '', content_type: 12, object_id: '6', object_repr: 'martha.landis@gmail.com
+      insulin @ 08:00:00', user: 1}
+  model: admin.logentry
+  pk: 45
+- fields: {action_flag: 3, action_time: !!timestamp '2011-09-25 03:55:39.064260',
+    change_message: '', content_type: 11, object_id: '6', object_repr: martha.landis@gmail.com
+      Atenolol, user: 1}
+  model: admin.logentry
+  pk: 44
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:55:08.026810',
+    change_message: '', content_type: 11, object_id: '12', object_repr: martha.landis@gmail.com
+      Zocor, user: 1}
+  model: admin.logentry
+  pk: 43
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:55:00.107941',
+    change_message: '', content_type: 11, object_id: '11', object_repr: martha.landis@gmail.com
+      trazodone, user: 1}
+  model: admin.logentry
+  pk: 42
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:54:54.373655',
+    change_message: '', content_type: 11, object_id: '10', object_repr: martha.landis@gmail.com
+      Prilosec, user: 1}
+  model: admin.logentry
+  pk: 41
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:54:47.911327',
+    change_message: '', content_type: 11, object_id: '9', object_repr: martha.landis@gmail.com
+      ibuprofen, user: 1}
+  model: admin.logentry
+  pk: 40
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:54:43.232842',
+    change_message: '', content_type: 11, object_id: '8', object_repr: martha.landis@gmail.com
+      Microzide, user: 1}
+  model: admin.logentry
+  pk: 39
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:54:36.800810',
+    change_message: '', content_type: 11, object_id: '7', object_repr: martha.landis@gmail.com
+      Atenolol, user: 1}
+  model: admin.logentry
+  pk: 38
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:54:30.442221',
+    change_message: '', content_type: 11, object_id: '6', object_repr: martha.landis@gmail.com
+      Atenolol, user: 1}
+  model: admin.logentry
+  pk: 37
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:54:25.134156',
+    change_message: '', content_type: 11, object_id: '5', object_repr: martha.landis@gmail.com
+      Prozac, user: 1}
+  model: admin.logentry
+  pk: 36
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:54:19.666724',
+    change_message: '', content_type: 11, object_id: '4', object_repr: martha.landis@gmail.com
+      insulin, user: 1}
+  model: admin.logentry
+  pk: 35
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:53:54.825778',
+    change_message: Changed name., content_type: 10, object_id: '12', object_repr: Zocor,
+    user: 1}
+  model: admin.logentry
+  pk: 34
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:53:47.929048',
+    change_message: Changed name., content_type: 10, object_id: '6', object_repr: Atenolol,
+    user: 1}
+  model: admin.logentry
+  pk: 33
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:53:39.418462',
+    change_message: Changed name., content_type: 10, object_id: '10', object_repr: Prilosec,
+    user: 1}
+  model: admin.logentry
+  pk: 32
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:53:01.873458',
+    change_message: No fields changed., content_type: 10, object_id: '7', object_repr: Microzide,
+    user: 1}
+  model: admin.logentry
+  pk: 31
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:52:59.905052',
+    change_message: Changed name., content_type: 10, object_id: '7', object_repr: Microzide,
+    user: 1}
+  model: admin.logentry
+  pk: 30
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:52:52.087144',
+    change_message: No fields changed., content_type: 10, object_id: '7', object_repr: Microzide
+      hydrochlorothiazide, user: 1}
+  model: admin.logentry
+  pk: 29
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:52:40.876988',
+    change_message: No fields changed., content_type: 10, object_id: '7', object_repr: Microzide
+      hydrochlorothiazide, user: 1}
+  model: admin.logentry
+  pk: 28
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:51:43.396272',
+    change_message: '', content_type: 10, object_id: '12', object_repr: Zocor (simvastatin),
+    user: 1}
+  model: admin.logentry
+  pk: 27
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:51:24.841421',
+    change_message: '', content_type: 10, object_id: '11', object_repr: trazodone,
+    user: 1}
+  model: admin.logentry
+  pk: 26
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:51:04.928127',
+    change_message: '', content_type: 10, object_id: '10', object_repr: Prilosec omepgrazole,
+    user: 1}
+  model: admin.logentry
+  pk: 25
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:50:49.312831',
+    change_message: '', content_type: 10, object_id: '9', object_repr: metformin,
+    user: 1}
+  model: admin.logentry
+  pk: 24
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:50:39.210249',
+    change_message: '', content_type: 10, object_id: '8', object_repr: ibuprofen,
+    user: 1}
+  model: admin.logentry
+  pk: 23
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:50:27.167219',
+    change_message: '', content_type: 10, object_id: '7', object_repr: Microzide hydrochlorothiazide,
+    user: 1}
+  model: admin.logentry
+  pk: 22
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:50:13.005998',
+    change_message: '', content_type: 10, object_id: '6', object_repr: Ternormin atenolol,
+    user: 1}
+  model: admin.logentry
+  pk: 21
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:49:55.536418',
+    change_message: '', content_type: 10, object_id: '5', object_repr: Prozac, user: 1}
+  model: admin.logentry
+  pk: 20
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:47:50.541806',
+    change_message: '', content_type: 10, object_id: '4', object_repr: insulin, user: 1}
+  model: admin.logentry
+  pk: 19
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:46:26.672570',
+    change_message: '', content_type: 9, object_id: '2', object_repr: martha.landis@gmail.com,
+    user: 1}
+  model: admin.logentry
+  pk: 18
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:46:00.893024',
+    change_message: Changed is_superuser., content_type: 3, object_id: '2', object_repr: martha.landis@gmail.com,
+    user: 1}
+  model: admin.logentry
+  pk: 17
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 03:45:47.454557',
+    change_message: 'Changed first_name, last_name, email and is_superuser.', content_type: 3,
+    object_id: '2', object_repr: martha.landis@gmail.com, user: 1}
+  model: admin.logentry
+  pk: 16
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 03:45:25.728992',
+    change_message: '', content_type: 3, object_id: '2', object_repr: martha.landis@gmail.com,
+    user: 1}
+  model: admin.logentry
+  pk: 15
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 00:06:28.140387',
+    change_message: Changed dosage_count., content_type: 12, object_id: '1', object_repr: 'khomenko@gmail.com
+      Vitamin C @ 09:00:00', user: 1}
+  model: admin.logentry
+  pk: 14
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:23:20.823324',
+    change_message: '', content_type: 12, object_id: '5', object_repr: 'khomenko@gmail.com
+      Blood Thinner @ 23:00:00', user: 1}
+  model: admin.logentry
+  pk: 13
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-24 22:22:28.337669',
+    change_message: Changed time_scheduled., content_type: 12, object_id: '3', object_repr: 'khomenko@gmail.com
+      Antibiotic @ 16:00:00', user: 1}
+  model: admin.logentry
+  pk: 12
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:22:04.941151',
+    change_message: '', content_type: 12, object_id: '4', object_repr: 'khomenko@gmail.com
+      Antibiotic @ 23:00:00', user: 1}
+  model: admin.logentry
+  pk: 11
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:21:31.122846',
+    change_message: '', content_type: 12, object_id: '3', object_repr: 'khomenko@gmail.com
+      Antibiotic @ 17:00:00', user: 1}
+  model: admin.logentry
+  pk: 10
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:21:03.205454',
+    change_message: '', content_type: 12, object_id: '2', object_repr: 'khomenko@gmail.com
+      Antibiotic @ 09:00:00', user: 1}
+  model: admin.logentry
+  pk: 9
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:20:35.718791',
+    change_message: '', content_type: 12, object_id: '1', object_repr: 'khomenko@gmail.com
+      Vitamin C @ 09:00:00', user: 1}
+  model: admin.logentry
+  pk: 8
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:18:14.168319',
+    change_message: '', content_type: 11, object_id: '3', object_repr: khomenko@gmail.com
+      Blood Thinner, user: 1}
+  model: admin.logentry
+  pk: 7
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:18:09.446205',
+    change_message: '', content_type: 11, object_id: '2', object_repr: khomenko@gmail.com
+      Antibiotic, user: 1}
+  model: admin.logentry
+  pk: 6
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:18:02.875041',
+    change_message: '', content_type: 11, object_id: '1', object_repr: khomenko@gmail.com
+      Vitamin C, user: 1}
+  model: admin.logentry
+  pk: 5
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:15:47.836487',
+    change_message: '', content_type: 10, object_id: '3', object_repr: Medication
+      object, user: 1}
+  model: admin.logentry
+  pk: 4
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:15:19.413745',
+    change_message: '', content_type: 10, object_id: '2', object_repr: Medication
+      object, user: 1}
+  model: admin.logentry
+  pk: 3
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 22:14:48.923625',
+    change_message: '', content_type: 10, object_id: '1', object_repr: Medication
+      object, user: 1}
+  model: admin.logentry
+  pk: 2
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-24 21:54:12.050134',
+    change_message: '', content_type: 9, object_id: '1', object_repr: khomenko@gmail.com,
+    user: 1}
+  model: admin.logentry
+  pk: 1
+- fields: {phone: '6509062671', tz: US/Pacific, user: 1}
+  model: account.userprofile
+  pk: 1
+- fields: {phone: '6509062671', tz: US/Pacific, user: 2}
+  model: account.userprofile
+  pk: 2
+- fields: {name: Vitamin C, picture_name: null}
+  model: account.medication
+  pk: 1
+- fields: {name: Antibiotic, picture_name: null}
+  model: account.medication
+  pk: 2
+- fields: {name: Blood Thinner, picture_name: null}
+  model: account.medication
+  pk: 3
+- fields: {name: insulin, picture_name: 200pxSyringe.jpg}
+  model: account.medication
+  pk: 4
+- fields: {name: Prozac, picture_name: Prozac1Pill.jpg}
+  model: account.medication
+  pk: 5
+- fields: {name: Atenolol, picture_name: Tenormin252pills.jpg}
+  model: account.medication
+  pk: 6
+- fields: {name: Microzide, picture_name: Microzide122pills.jpg}
+  model: account.medication
+  pk: 7
+- fields: {name: ibuprofen, picture_name: Ibuprofen2pills.jpg}
+  model: account.medication
+  pk: 8
+- fields: {name: metformin, picture_name: Metformin1Pill.jpg}
+  model: account.medication
+  pk: 9
+- fields: {name: Prilosec, picture_name: Prilosec10mgx2.jpg}
+  model: account.medication
+  pk: 10
+- fields: {name: trazodone, picture_name: TrazodoneHalfPill.jpg}
+  model: account.medication
+  pk: 11
+- fields: {name: Zocor, picture_name: Zocor1Pill.jpg}
+  model: account.medication
+  pk: 12
+- fields: {medication: 1, user: 1}
+  model: account.usermedication
+  pk: 1
+- fields: {medication: 2, user: 1}
+  model: account.usermedication
+  pk: 2
+- fields: {medication: 3, user: 1}
+  model: account.usermedication
+  pk: 3
+- fields: {medication: 4, user: 2}
+  model: account.usermedication
+  pk: 4
+- fields: {medication: 5, user: 2}
+  model: account.usermedication
+  pk: 5
+- fields: {medication: 6, user: 2}
+  model: account.usermedication
+  pk: 7
+- fields: {medication: 7, user: 2}
+  model: account.usermedication
+  pk: 8
+- fields: {medication: 8, user: 2}
+  model: account.usermedication
+  pk: 9
+- fields: {medication: 10, user: 2}
+  model: account.usermedication
+  pk: 10
+- fields: {medication: 11, user: 2}
+  model: account.usermedication
+  pk: 11
+- fields: {medication: 12, user: 2}
+  model: account.usermedication
+  pk: 12
+- fields: {medication: 9, user: 2}
+  model: account.usermedication
+  pk: 13
+- fields: {dosage: 100 Mg Capsule, dosage_count: 3, time_scheduled: '09:00:00', user_med: 1}
+  model: account.usermedicationschedule
+  pk: 1
+- fields: {dosage: 50 Mg Tablet, dosage_count: 1, time_scheduled: '09:00:00', user_med: 2}
+  model: account.usermedicationschedule
+  pk: 2
+- fields: {dosage: 50 Mg Tablet, dosage_count: 1, time_scheduled: '16:00:00', user_med: 2}
+  model: account.usermedicationschedule
+  pk: 3
+- fields: {dosage: 50 Mg Tablet, dosage_count: 1, time_scheduled: '23:00:00', user_med: 2}
+  model: account.usermedicationschedule
+  pk: 4
+- fields: {dosage: 200 Mg Caplet, dosage_count: 1, time_scheduled: '23:00:00', user_med: 3}
+  model: account.usermedicationschedule
+  pk: 5
+- fields: {dosage: units, dosage_count: 17, time_scheduled: '08:00:00', user_med: 4}
+  model: account.usermedicationschedule
+  pk: 6
+- fields: {dosage: 20 mg, dosage_count: 1, time_scheduled: '08:00:00', user_med: 5}
+  model: account.usermedicationschedule
+  pk: 7
+- fields: {dosage: 25 mg, dosage_count: 2, time_scheduled: '08:00:00', user_med: 7}
+  model: account.usermedicationschedule
+  pk: 8
+- fields: {dosage: 12.5 mg, dosage_count: 2, time_scheduled: '08:00:00', user_med: 8}
+  model: account.usermedicationschedule
+  pk: 9
+- fields: {dosage: 200 mg, dosage_count: 2, time_scheduled: '08:00:00', user_med: 9}
+  model: account.usermedicationschedule
+  pk: 10
+- fields: {dosage: 850 mg, dosage_count: 1, time_scheduled: '08:00:00', user_med: 13}
+  model: account.usermedicationschedule
+  pk: 11
+- fields: {dosage: 10 mg, dosage_count: 2, time_scheduled: '12:00:00', user_med: 10}
+  model: account.usermedicationschedule
+  pk: 12
+- fields: {dosage: 200 mg, dosage_count: 2, time_scheduled: '12:00:00', user_med: 9}
+  model: account.usermedicationschedule
+  pk: 13
+- fields: {dosage: 10 mg, dosage_count: 2, time_scheduled: '18:00:00', user_med: 10}
+  model: account.usermedicationschedule
+  pk: 14
+- fields: {dosage: 850 mg, dosage_count: 1, time_scheduled: '20:00:00', user_med: 13}
+  model: account.usermedicationschedule
+  pk: 15
+- fields: {dosage: 150 mg, dosage_count: 1, time_scheduled: '20:00:00', user_med: 11}
+  model: account.usermedicationschedule
+  pk: 16
+- fields: {dosage: 20 mg, dosage_count: 1, time_scheduled: '20:00:00', user_med: 12}
+  model: account.usermedicationschedule
+  pk: 17
+- fields: {dosage: 200 mg, dosage_count: 2, time_scheduled: '20:00:00', user_med: 9}
+  model: account.usermedicationschedule
+  pk: 18
+- fields: {codename: add_medication, content_type: 10, name: Can add medication}
+  model: auth.permission
+  pk: 28
+- fields: {codename: change_medication, content_type: 10, name: Can change medication}
+  model: auth.permission
+  pk: 29
+- fields: {codename: delete_medication, content_type: 10, name: Can delete medication}
+  model: auth.permission
+  pk: 30
+- fields: {codename: add_usermedication, content_type: 11, name: Can add user medication}
+  model: auth.permission
+  pk: 31
+- fields: {codename: change_usermedication, content_type: 11, name: Can change user
+      medication}
+  model: auth.permission
+  pk: 32
+- fields: {codename: delete_usermedication, content_type: 11, name: Can delete user
+      medication}
+  model: auth.permission
+  pk: 33
+- fields: {codename: add_usermedicationlog, content_type: 13, name: Can add user medication
+      log}
+  model: auth.permission
+  pk: 37
+- fields: {codename: change_usermedicationlog, content_type: 13, name: Can change
+      user medication log}
+  model: auth.permission
+  pk: 38
+- fields: {codename: delete_usermedicationlog, content_type: 13, name: Can delete
+      user medication log}
+  model: auth.permission
+  pk: 39
+- fields: {codename: add_usermedicationschedule, content_type: 12, name: Can add user
+      medication schedule}
+  model: auth.permission
+  pk: 34
+- fields: {codename: change_usermedicationschedule, content_type: 12, name: Can change
+      user medication schedule}
+  model: auth.permission
+  pk: 35
+- fields: {codename: delete_usermedicationschedule, content_type: 12, name: Can delete
+      user medication schedule}
+  model: auth.permission
+  pk: 36
+- fields: {codename: add_userprofile, content_type: 9, name: Can add user profile}
+  model: auth.permission
+  pk: 25
+- fields: {codename: change_userprofile, content_type: 9, name: Can change user profile}
+  model: auth.permission
+  pk: 26
+- fields: {codename: delete_userprofile, content_type: 9, name: Can delete user profile}
+  model: auth.permission
+  pk: 27
+- fields: {codename: add_logentry, content_type: 8, name: Can add log entry}
+  model: auth.permission
+  pk: 22
+- fields: {codename: change_logentry, content_type: 8, name: Can change log entry}
+  model: auth.permission
+  pk: 23
+- fields: {codename: delete_logentry, content_type: 8, name: Can delete log entry}
+  model: auth.permission
+  pk: 24
+- fields: {codename: add_group, content_type: 2, name: Can add group}
+  model: auth.permission
+  pk: 4
+- fields: {codename: change_group, content_type: 2, name: Can change group}
+  model: auth.permission
+  pk: 5
+- fields: {codename: delete_group, content_type: 2, name: Can delete group}
+  model: auth.permission
+  pk: 6
+- fields: {codename: add_message, content_type: 4, name: Can add message}
+  model: auth.permission
+  pk: 10
+- fields: {codename: change_message, content_type: 4, name: Can change message}
+  model: auth.permission
+  pk: 11
+- fields: {codename: delete_message, content_type: 4, name: Can delete message}
+  model: auth.permission
+  pk: 12
+- fields: {codename: add_permission, content_type: 1, name: Can add permission}
+  model: auth.permission
+  pk: 1
+- fields: {codename: change_permission, content_type: 1, name: Can change permission}
+  model: auth.permission
+  pk: 2
+- fields: {codename: delete_permission, content_type: 1, name: Can delete permission}
+  model: auth.permission
+  pk: 3
+- fields: {codename: add_user, content_type: 3, name: Can add user}
+  model: auth.permission
+  pk: 7
+- fields: {codename: change_user, content_type: 3, name: Can change user}
+  model: auth.permission
+  pk: 8
+- fields: {codename: delete_user, content_type: 3, name: Can delete user}
+  model: auth.permission
+  pk: 9
+- fields: {codename: add_contenttype, content_type: 5, name: Can add content type}
+  model: auth.permission
+  pk: 13
+- fields: {codename: change_contenttype, content_type: 5, name: Can change content
+      type}
+  model: auth.permission
+  pk: 14
+- fields: {codename: delete_contenttype, content_type: 5, name: Can delete content
+      type}
+  model: auth.permission
+  pk: 15
+- fields: {codename: add_session, content_type: 6, name: Can add session}
+  model: auth.permission
+  pk: 16
+- fields: {codename: change_session, content_type: 6, name: Can change session}
+  model: auth.permission
+  pk: 17
+- fields: {codename: delete_session, content_type: 6, name: Can delete session}
+  model: auth.permission
+  pk: 18
+- fields: {codename: add_site, content_type: 7, name: Can add site}
+  model: auth.permission
+  pk: 19
+- fields: {codename: change_site, content_type: 7, name: Can change site}
+  model: auth.permission
+  pk: 20
+- fields: {codename: delete_site, content_type: 7, name: Can delete site}
+  model: auth.permission
+  pk: 21
+- fields:
+    date_joined: 2011-09-24 21:53:05.572882
+    email: khomenko@gmail.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2011-09-25 04:11:26.168461
+    last_name: ''
+    password: sha1$e1321$f707ac1c824f18d3615fd293bd1b7a5d420bcc80
+    user_permissions: []
+    username: khomenko@gmail.com
+  model: auth.user
+  pk: 1
+- fields:
+    date_joined: 2011-09-25 03:45:25
+    email: martha.landis@gmail.com
+    first_name: Martha
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2011-09-25 05:19:45.748014
+    last_name: Landis
+    password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
+    user_permissions: []
+    username: martha.landis@gmail.com
+  model: auth.user
+  pk: 2
