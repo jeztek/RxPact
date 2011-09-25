@@ -31,8 +31,16 @@ def home(request, message=None):
     now = int(time.time()*1000)
     timezone = pytz.timezone(request.user.get_profile().tz)
 
+    user_profile = request.user.get_profile()
+    user_meds = request.user.usermedication_set.all()
+
+    # load schedule for each medication and flatten into one list
+    user_med_times = list(flatten([um.usermedicationschedule_set.all() for um in user_meds]))
+    medications = []
+
     return render_to_response('app_home.html', {
         'message'      : message,
+        'medications'  : medications,
     }, context_instance = RequestContext(request))
 
 def flatten(listOfLists):
