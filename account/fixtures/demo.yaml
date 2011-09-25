@@ -1,6 +1,90 @@
+- fields: {app_label: contenttypes, model: contenttype, name: content type}
+  model: contenttypes.contenttype
+  pk: 5
+- fields: {app_label: auth, model: group, name: group}
+  model: contenttypes.contenttype
+  pk: 2
+- fields: {app_label: admin, model: logentry, name: log entry}
+  model: contenttypes.contenttype
+  pk: 8
+- fields: {app_label: account, model: medication, name: medication}
+  model: contenttypes.contenttype
+  pk: 10
+- fields: {app_label: auth, model: message, name: message}
+  model: contenttypes.contenttype
+  pk: 4
+- fields: {app_label: auth, model: permission, name: permission}
+  model: contenttypes.contenttype
+  pk: 1
+- fields: {app_label: sessions, model: session, name: session}
+  model: contenttypes.contenttype
+  pk: 6
+- fields: {app_label: sites, model: site, name: site}
+  model: contenttypes.contenttype
+  pk: 7
+- fields: {app_label: auth, model: user, name: user}
+  model: contenttypes.contenttype
+  pk: 3
+- fields: {app_label: account, model: usermedication, name: user medication}
+  model: contenttypes.contenttype
+  pk: 11
+- fields: {app_label: account, model: usermedicationlog, name: user medication log}
+  model: contenttypes.contenttype
+  pk: 13
+- fields: {app_label: account, model: usermedicationschedule, name: user medication
+      schedule}
+  model: contenttypes.contenttype
+  pk: 12
+- fields: {app_label: account, model: usernetwork, name: user network}
+  model: contenttypes.contenttype
+  pk: 14
+- fields: {app_label: account, model: userprofile, name: user profile}
+  model: contenttypes.contenttype
+  pk: 9
+- fields: {expire_date: !!timestamp '2011-10-09 19:54:06.227893', session_data: 'gAJ9cQEoVQp0ZXN0Y29va2llcQJVBndvcmtlZHEDVQ1fYXV0aF91c2VyX2lkcQRLAlUSX2F1dGhf
+
+      dXNlcl9iYWNrZW5kcQVVKWRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5k
+
+      cQZ1LjM5OTc0OTMwN2VjOGQ2MTNlYjBiNmIzYTAyODRjZTQ3
+
+      '}
+  model: sessions.session
+  pk: 0e7a16cc5529181aa93411a10567aea4
+- fields: {expire_date: !!timestamp '2011-10-09 19:22:48.133347', session_data: 'gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k
+
+      cy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEESwJ1LjhjMzE0Mjc3MmJmYmM1MGYxYWIw
+
+      ODNlMzNkZDNiMTM1
+
+      '}
+  model: sessions.session
+  pk: 532c7f2fafafbd73afc32cb5738bafec
+- fields: {expire_date: !!timestamp '2011-10-09 19:54:21.183805', session_data: 'gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k
+
+      cy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEESwF1LmQ0MmRhNDk2ZjAzY2ExYWMzMTQz
+
+      NzEyYTA0NmI5NGE4
+
+      '}
+  model: sessions.session
+  pk: 2b2a145d709538736ad3dd86fc966864
 - fields: {domain: example.com, name: example.com}
   model: sites.site
   pk: 1
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 19:55:39.080533',
+    change_message: Changed dosage_count and dosage., content_type: 12, object_id: '6',
+    object_repr: 'martha.landis@gmail.com Gleevec @ 08:00:00', user: 1}
+  model: admin.logentry
+  pk: 62
+- fields: {action_flag: 2, action_time: !!timestamp '2011-09-25 19:55:19.012515',
+    change_message: Changed medication., content_type: 11, object_id: '4', object_repr: martha.landis@gmail.com
+      Gleevec, user: 1}
+  model: admin.logentry
+  pk: 61
+- fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 19:54:50.951055',
+    change_message: '', content_type: 10, object_id: '13', object_repr: Gleevec, user: 1}
+  model: admin.logentry
+  pk: 60
 - fields: {action_flag: 1, action_time: !!timestamp '2011-09-25 04:05:22.815016',
     change_message: '', content_type: 12, object_id: '18', object_repr: 'martha.landis@gmail.com
       ibuprofen @ 20:00:00', user: 1}
@@ -294,32 +378,68 @@
     user: 1}
   model: admin.logentry
   pk: 1
-- fields: {phone: '6509062671', tz: US/Pacific, user: 1, picture_name: male1.jpg, score: 75}
+- fields: {phone: '6509062671', picture_name: male1.jpg, score: 75, tz: US/Pacific,
+    user: 1}
   model: account.userprofile
   pk: 1
-- fields: {phone: '6509062671', tz: US/Pacific, user: 2, picture_name: female1.jpg, score: 100}
+- fields: {phone: '6509062671', picture_name: female1.jpg, score: 100, tz: US/Pacific,
+    user: 2}
   model: account.userprofile
   pk: 2
-- fields: {phone: '6509062671', tz: US/Pacific, user: 3, picture_name: male3.jpg, score: 70}
+- fields: {phone: '6509062671', picture_name: male3.jpg, score: 70, tz: US/Pacific,
+    user: 3}
   model: account.userprofile
   pk: 3
-- fields: {phone: '6509062671', tz: US/Pacific, user: 4, picture_name: male4.jpg, score: 90}
+- fields: {phone: '6509062671', picture_name: male4.jpg, score: 90, tz: US/Pacific,
+    user: 4}
   model: account.userprofile
   pk: 4
-- fields: {phone: '6509062671', tz: US/Pacific, user: 5, picture_name: male5.jpg, score: 100}
+- fields: {phone: '6509062671', picture_name: male5.jpg, score: 100, tz: US/Pacific,
+    user: 5}
   model: account.userprofile
   pk: 5
-- fields: {phone: '6509062671', tz: US/Pacific, user: 6, picture_name: male6.jpg, score: 20}
+- fields: {phone: '6509062671', picture_name: male6.jpg, score: 20, tz: US/Pacific,
+    user: 6}
   model: account.userprofile
   pk: 6
-- fields: {phone: '6509062671', tz: US/Pacific, user: 7, picture_name: female7.jpg, score: 80}
+- fields: {phone: '6509062671', picture_name: female7.jpg, score: 80, tz: US/Pacific,
+    user: 7}
   model: account.userprofile
   pk: 7
-- fields: {phone: '6509062671', tz: US/Pacific, user: 8, picture_name: male8.jpg, score: 100}
+- fields: {phone: '6509062671', picture_name: male8.jpg, score: 100, tz: US/Pacific,
+    user: 8}
   model: account.userprofile
   pk: 8
-- fields: {phone: '6509062671', tz: US/Pacific, user: 9, picture_name: female9.jpg, score: 95}
+- fields: {phone: '6509062671', picture_name: female9.jpg, score: 95, tz: US/Pacific,
+    user: 9}
   model: account.userprofile
+  pk: 9
+- fields: {link: 1, user: 2}
+  model: account.usernetwork
+  pk: 1
+- fields: {link: 3, user: 2}
+  model: account.usernetwork
+  pk: 2
+- fields: {link: 4, user: 2}
+  model: account.usernetwork
+  pk: 3
+- fields: {link: 5, user: 2}
+  model: account.usernetwork
+  pk: 4
+- fields: {link: 6, user: 2}
+  model: account.usernetwork
+  pk: 5
+- fields: {link: 7, user: 2}
+  model: account.usernetwork
+  pk: 6
+- fields: {link: 8, user: 2}
+  model: account.usernetwork
+  pk: 7
+- fields: {link: 9, user: 2}
+  model: account.usernetwork
+  pk: 8
+- fields: {link: 2, user: 2}
+  model: account.usernetwork
   pk: 9
 - fields: {name: Vitamin C, picture_name: 200pxSyringe.jpg}
   model: account.medication
@@ -357,6 +477,9 @@
 - fields: {name: Zocor, picture_name: Zocor1Pill.jpg}
   model: account.medication
   pk: 12
+- fields: {name: Gleevec, picture_name: Gleevec400mgx2.jpg}
+  model: account.medication
+  pk: 13
 - fields: {medication: 1, user: 1}
   model: account.usermedication
   pk: 1
@@ -366,7 +489,7 @@
 - fields: {medication: 3, user: 1}
   model: account.usermedication
   pk: 3
-- fields: {medication: 4, user: 2}
+- fields: {medication: 13, user: 2}
   model: account.usermedication
   pk: 4
 - fields: {medication: 5, user: 2}
@@ -408,7 +531,7 @@
 - fields: {dosage: 200 Mg Caplet, dosage_count: 1, time_scheduled: '23:00:00', user_med: 3}
   model: account.usermedicationschedule
   pk: 5
-- fields: {dosage: units, dosage_count: 17, time_scheduled: '08:00:00', user_med: 4}
+- fields: {dosage: 400 mg, dosage_count: 2, time_scheduled: '08:00:00', user_med: 4}
   model: account.usermedicationschedule
   pk: 6
 - fields: {dosage: 20 mg, dosage_count: 1, time_scheduled: '08:00:00', user_med: 5}
@@ -491,6 +614,15 @@
       user medication schedule}
   model: auth.permission
   pk: 36
+- fields: {codename: add_usernetwork, content_type: 14, name: Can add user network}
+  model: auth.permission
+  pk: 40
+- fields: {codename: change_usernetwork, content_type: 14, name: Can change user network}
+  model: auth.permission
+  pk: 41
+- fields: {codename: delete_usernetwork, content_type: 14, name: Can delete user network}
+  model: auth.permission
+  pk: 42
 - fields: {codename: add_userprofile, content_type: 9, name: Can add user profile}
   model: auth.permission
   pk: 25
@@ -582,7 +714,7 @@
     is_active: true
     is_staff: true
     is_superuser: true
-    last_login: 2011-09-25 04:11:26.168461
+    last_login: 2011-09-25 19:54:21.169334
     last_name: Khomenko
     password: sha1$e1321$f707ac1c824f18d3615fd293bd1b7a5d420bcc80
     user_permissions: []
@@ -597,7 +729,7 @@
     is_active: true
     is_staff: false
     is_superuser: false
-    last_login: 2011-09-25 05:19:45.748014
+    last_login: 2011-09-25 19:22:48.121164
     last_name: Landis
     password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
     user_permissions: []
@@ -709,31 +841,3 @@
     username: sylvia.gomez@gmail.com
   model: auth.user
   pk: 9
-- fields: {user: 2, link: 1}
-  model: account.usernetwork
-  pk: 1
-- fields: {user: 2, link: 3}
-  model: account.usernetwork
-  pk: 2
-- fields: {user: 2, link: 4}
-  model: account.usernetwork
-  pk: 3
-- fields: {user: 2, link: 5}
-  model: account.usernetwork
-  pk: 4
-- fields: {user: 2, link: 6}
-  model: account.usernetwork
-  pk: 5
-- fields: {user: 2, link: 7}
-  model: account.usernetwork
-  pk: 6
-- fields: {user: 2, link: 8}
-  model: account.usernetwork
-  pk: 7
-- fields: {user: 2, link: 9}
-  model: account.usernetwork
-  pk: 8
-- fields: {user: 2, link: 2}
-  model: account.usernetwork
-  pk: 9
-
