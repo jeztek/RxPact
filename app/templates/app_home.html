@@ -533,6 +533,7 @@ function simulate_friends_taking_meds() {
           meds_success({{ user_network.1.link.id }});
           window.setTimeout(function() {
 
+            $("#time_slot_1").css("display", "none");
             set_time_to(17, 43);	  
             simulate_friends_forgetting_meds();
 	  
