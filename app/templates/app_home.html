@@ -153,14 +153,17 @@ function set_times() {
   for (var i in schedule) {
     slot = schedule[i];
     // weird timezone correction? sigh
-    minutes_away = Math.floor(((new Date(slot.time.$date) - current_time) - 17 * 3600 * 1000) / (60 * 1000));
+    minutes_away = Math.floor(((new Date(slot.time.$date) - current_time) + 7 * 3600 * 1000) / (60 * 1000));
+    var t = '';
     if (minutes_away < 0) {
       $("#time_slot_" + i).addClass("past");
-    } else if (minutes_away < 60) {
-      $("#time_slot_" + i).find(".you_time").html("<div class='you_relative_time'>in " + minutes_away + " minutes</div>");
     } else {
-      $("#time_slot_" + i).find(".you_time").html('');
+      $("#time_slot_" + i).removeClass("past");
+      if (minutes_away < 60) {
+        t = "<div class='you_relative_time'>in " + minutes_away + " minutes</div>";
+      }
     }
+    $("#time_slot_" + i).find(".you_time").html(t);
   }
 }
 
