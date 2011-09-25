@@ -15,7 +15,13 @@
 <body>
   <div id="container">
     <div id="title">
-      <a href="/">rxpact</a>
+      <a href="/">rxpact
+	{% if user.is_authenticated %}
+	  <span id="title_name">
+	    for {{ user.first_name }} {{ user.last_name }}
+	  </span>
+	{% endif %}
+      </a>
 
       <span id="user_bar">
 	{% if user.is_authenticated %}

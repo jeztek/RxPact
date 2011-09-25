@@ -16,10 +16,10 @@ img { border: 0px }
 }
 
 #title {
-    font-size: 12pt;
+    font-size: 14pt;
     font-weight: bold;
     color: #1A5959;
-    padding: 6px 4px;
+    padding: 6px 10px;
     background-color: #63A120;
     white-space: nowrap;
     overflow: hidden;
@@ -32,6 +32,11 @@ img { border: 0px }
 
 #title a:hover {
     color: #D00;
+}
+
+#title #title_name {
+    font-weight: normal;
+    font-size: 0.8em;
 }
 
 #title #user_bar {

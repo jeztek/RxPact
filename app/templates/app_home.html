@@ -5,9 +5,11 @@
 <style>
 
 #header {
-  text-align: center;
-  padding: 10px;
-  margin: 0px auto;
+//  text-align: left;
+  margin-left: 6px;
+  margin-top: 30px;
+  font-size: 1em;
+//  margin: 0px auto;
 }
 
 .pane {
@@ -151,16 +153,16 @@ Date.prototype.formatDate = function(format)
     if (format.indexOf("t") > -1)
     {
        if (hours > 11)
-        format = format.replace("t","pm")
+        format = format.replace("t","PM")
        else
-        format = format.replace("t","am")
+        format = format.replace("t","AM")
     }
     if (format.indexOf("HH") > -1)
-        format = format.replace("HH",hours.toString().padL(2,"0"));
+        format = format.replace("HH",hours.toString());
     if (format.indexOf("hh") > -1) {
         if (hours > 12) hours - 12;
         if (hours == 0) hours = 12;
-        format = format.replace("hh",hours.toString().padL(2,"0"));        
+        format = format.replace("hh",hours.toString().padL(2,"0"));
     }
     if (format.indexOf("mm") > -1)
        format = format.replace("mm",date.getMinutes().toString().padL(2,"0"));
@@ -178,8 +180,6 @@ function set_times() {
   var relative_time_slot;
   var i, len;
 
-  $("#current_time").html(current_time.formatDate("HH:mm"));
-
   for (i=0; len = schedule.length, i < len; i+=1) {
     slot = schedule[i];
     relative_time_slot = $("#time_slot_" + i).find(".you_relative_time");
@@ -195,6 +195,7 @@ function set_times() {
       }
     }
   }
+  $("#current_time").html(current_time.formatDate("HH:mm t"));
 }
 
 function set_current() {
@@ -207,7 +208,8 @@ function set_current() {
 
 jQuery(function() {
 
-  $("img").corner();
+  $("#title").corner("bl br 5px");
+  $("img").corner("8px");
 
   $(".button").click(function() {
     var time_slot = $("#time_slot_" + this.id.split("_")[1]);
@@ -237,7 +239,7 @@ jQuery(function() {
 {% block body %}
 
 <div id="header">
-Hello {{ user.first_name }}! The current time is <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">set</a>
+It is currently <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">[set]</a>
 </div>
 
 <br style="clear: both" />
