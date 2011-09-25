@@ -289,10 +289,10 @@ function set_times() {
     slot = schedule[i];
     relative_time_slot = $("#time_slot_" + i).find(".you_relative_time");
     minutes_away = Math.ceil((new Date(slot.timestamp) - current_time) / 60000);
-    if (minutes_away == 0) {
+    if ((minutes_away == 0) && ($("#action_" + i).hasClass("hidden"))) {
         $("#action_" + i).removeClass("hidden");
         // tell the cat side that user 0 needs to start taking meds
-        // meds_start(0);
+        meds_fail({{ user.id }});
     }
     if (minutes_away < 0) {
       relative_time_slot.addClass("past");
@@ -326,7 +326,7 @@ function meds_fail(id) {
 
 function meds_success(id) {
   clearInterval(meowInterval);
-  $(".network#network_"+id+" .bowl").removeClass("empty").removeClass("hungry").addClass("full");
+  $(".network#network_"+id+" .bowl").removeClass("empty").removeClass("hungry").removeClass("red").addClass("full");
   EvalSound("pour_food");
   add_cat();
 }
@@ -389,6 +389,7 @@ jQuery(function() {
   $("#congrats_done").click(function(e) {
     $("#congrats").trigger("close");
     $("#time_slot_" + current_slot).css("display", "none");
+
     // tell the cat side that user 0 succeeded in taking their meds
     meds_success({{ user.id }});
 
@@ -417,18 +418,30 @@ function simulate_friends_taking_meds() {
 
   // chain two timers			
   window.setTimeout(function() {
-    meds_success({{ user_network.2.link.id }});
+
+    meds_fail({{ user_network.2.link.id }});
     window.setTimeout(function() {
-      meds_success({{ user_network.1.link.id }});
+
+      meds_success({{ user_network.2.link.id }});
       window.setTimeout(function() {
-        simulate_friends_forgetting_meds();
+
+        meds_fail({{ user_network.1.link.id }});
+        window.setTimeout(function() {
+
+          meds_success({{ user_network.1.link.id }});
+          window.setTimeout(function() {
+	  
+            simulate_friends_forgetting_meds();
+	  
+          }, 10000);
+        }, 5000);
       }, 10000);
-    }, 10000);
+    }, 5000);
   }, 10000);
 }
 
 function simulate_friends_forgetting_meds()  {
-  meds_fail({{ user_network.3.id }});
+  meds_fail({{ user_network.3.link.id }});
 }
 
 </script>
