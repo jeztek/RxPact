@@ -126,7 +126,7 @@
   width: 100px;
 }
 
-#network_title {
+o#network_title {
   font-size: 1.8em;
   margin-bottom: 20px;
   z-index: 10;
@@ -139,11 +139,6 @@
   padding-right: 0px;
   padding-bottom: 10px;
   text-align: center;
-}
-
-.network img {
-  max-width: 70px;
-  max-height: 70px;
 }
 
 .network a {
@@ -226,15 +221,40 @@
 
 
 #congrats {
-  // display: none;
+  border: 8px solid #444;
+  display: none;
   width: 500px;
-  //height: 100px;
-  padding-top: 20px;
-  background-color: #63A120;
-  color: white;
+  padding-top: 15px;
+  padding-left: 20px;
+  background-color: #fff;
+  text-align: left;  
   font-size: 18px;
 }
 
+#congrats #congrats_generic {
+  margin-bottom: 10px;
+}
+
+#congrats #post_med_reward_msg {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#congrats button {
+  font-size: 1.2em;
+  width: 100px;
+}
+
+#congrats #congrats_gravatar {
+  margin-top: 5px;
+  max-width: 70px;
+  max-height: 70px;
+}
+
+#congrats #congrats_photo {
+  max-width: 150px;
+  max-height: 150px;
+}
 
 .reset_kitten {
   display: none; position: absolute; height: 400px; width: 400px; left: 50px;
@@ -259,10 +279,6 @@
   margin-bottom: 5px;
 }
 
-#congrats img {
-  max-width: 70px;
-  max-height: 70px;
-}
 
 </style>
 
@@ -361,6 +377,9 @@ function set_times() {
         meds_fail({{ user.id }});
     }
     if (minutes_away < 0) {
+      if ($("#action_" + i).hasClass("hidden")) {
+        $("#action_" + i).removeClass("hidden");
+      }		       
       relative_time_slot.addClass("past");
       relative_time_slot.html(-minutes_away + " minutes ago");
     } 
@@ -638,7 +657,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
         <a href="#" id="network_imglink_{{ entry.link.id }}">
         <div class="bowl full"></div>
         <br/>
-			<img src="/static/img/avatars/medium/{{ entry.link.get_profile.picture_name }}" style="border-bottom: 6px solid"/></a>
+	<img src="/static/img/avatars/medium/{{ entry.link.get_profile.picture_name }}" style="border-bottom: 6px solid"/></a>
         <br />
         {{ entry.link.first_name }}
         </a>
@@ -672,27 +691,38 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 </div>
 
 <div id="congrats">
-  <div id="congrats_container">
-
-	<div id = "congrats_generic">Great! Your friends will enjoy the extra cat</div>
-	<div id = "congrats_sender">
-		<img src="/static/img/avatars/medium/{{ user_network.2.link.get_profile.picture_name }}" style="border-bottom: 6px solid {{ entry.color }}" />
-		left you a message:
-	</div>
-	<div id = "post_med_reward_msg"> Glad you took your meds, mom. Here's a new pic of JJ. He says, "I can't wait to see you on Friday, Grandma."</div>
-	<img src="static/img/post_med/jj.jpg" />	</div>
-
+  <div id="congrats_generic">
+    Nice work! Your network members will enjoy the extra cat.
   </div>
-  <span><button id="congrats_done" type="submit">Close</button></span>
+  
+  <table>
+    <tr>
+      <td style="vertical-align: top">
+	<img src="/static/img/avatars/medium/{{ user_network.2.link.get_profile.picture_name }}" id="congrats_gravatar">
+      </td>
+      <td>
+	<div id="post_med_reward_msg">
+	  <span style="font-size: 0.8em">Steve left you a message:<br /></span>
+	  <span style="color: #000">
+	    Glad you took your meds, mom. Here's a picture of JJ.  He says, 
+	    "I can't wait to see you on Friday, Grandma."<br />
+	  </span>
+	  <img id="congrats_photo" src="static/img/post_med/jj.jpg" />
+	</div>
+      </td>
+    </tr>
+  </table>
+  <div style="margin: 20px 0px">
+    <button id="congrats_done" type="submit">Close</button>
+  </div>
 </div>
 
 <div id="med_info">
   <img src="http://spl.anzonow.com/images/novartislogosmall.png" />
   <br class="clearer" />
-  <div id="med_info_container">
-
-  </div>
+  <div id="med_info_container"></div>
   <div><button id="med_info_done" type="submit">Done</button></div>
 </div>
+
 {% endblock body %}
 
