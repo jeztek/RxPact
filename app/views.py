@@ -53,7 +53,7 @@ def home(request, message=None):
             "meds" : [m.to_dict() for m in meds],
         })
 
-    user_network = UserNetwork.objects.filter(user=request.user).with_colors()
+    user_network = list(UserNetwork.objects.filter(user=request.user).with_colors())[:4]
         
     return render_to_response('app_home.html', {
         'user'      : request.user,
