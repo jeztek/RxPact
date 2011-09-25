@@ -16,7 +16,7 @@ except:
 from django.contrib.auth.decorators import login_required
 
 from helpers import datetimeToEpochMilli, send_sms
-
+from account.models import UserNetwork
 
 # Return JSON encoded representation of object as text response
 def JsonResponse(obj):
@@ -53,8 +53,11 @@ def home(request, message=None):
             "meds" : [m.to_dict() for m in meds],
         })
 
+    user_network = UserNetwork.objects.filter(user=request.user)
+
     return render_to_response('app_home.html', {
         'user'      : request.user,
+        'user_network' : user_network,
         'message'   : message,
         'schedule'  : schedule,
         'schedule_json' : json.dumps(schedule, ensure_ascii=False),
@@ -64,3 +67,9 @@ def home(request, message=None):
 @csrf_exempt
 def done(request):
     return JsonResponse({"success" : True})
+
+
+def edit(request):
+    return render_to_response('app_edit.html', {
+    }, context_instance = RequestContext(request))
+

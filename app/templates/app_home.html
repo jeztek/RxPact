@@ -67,6 +67,23 @@
   max-height: 100px;
 }
 
+#network_title {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.network {
+  display: inline-block;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.network_image {
+  max-width: 100px;
+  max-height: 100px;
+}
+
 .button {
   //vertical-align: middle;
   -moz-box-shadow:inset 0px 1px 0px 0px #caefab;
@@ -274,19 +291,9 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 <div class="pane right-pane" id="network">
 
   <div id="network_title">My Network</div>
-  <table>
-    <tr>
-      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
-      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
-      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
-    </tr>
-    <tr>
-      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
-      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
-      <td><img src="http://placekitten.com/64/64" /><br />Mom</td>
-    </tr>
-
-  </table>
+  {% for entry in user_network %}
+    <div class="network"><img class="network_image" src="/static/img/avatars/medium/{{ entry.link.get_profile.picture_name }}" /><br />{{ entry.link.first_name }}</div>
+  {% endfor %}
 </div>
 
 <br style="clear: both;" />

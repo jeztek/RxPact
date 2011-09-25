@@ -1,7 +1,7 @@
 body {
     font-family: arial, verdana, sans-serif;
     font-size: 12pt;
-    color: #000;
+    color: #555;
     background-color: #FFF;
     margin: 0px auto;
     padding: 0px;
@@ -28,6 +28,10 @@ img { border: 0px }
 #title a {
     text-decoration: none;
     color: #000;
+}
+
+#title a:nth-child(n+2) {
+    margin-left: 10px;
 }
 
 #title a:hover {

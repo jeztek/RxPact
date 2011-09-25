@@ -5,6 +5,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     pass
 
 admin.site.register(UserProfile)
+admin.site.register(UserNetwork)
 admin.site.register(Medication)
 admin.site.register(UserMedication)
 admin.site.register(UserMedicationSchedule)

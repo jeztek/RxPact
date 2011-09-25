@@ -1,61 +1,3 @@
-- fields: {app_label: contenttypes, model: contenttype, name: content type}
-  model: contenttypes.contenttype
-  pk: 5
-- fields: {app_label: auth, model: group, name: group}
-  model: contenttypes.contenttype
-  pk: 2
-- fields: {app_label: admin, model: logentry, name: log entry}
-  model: contenttypes.contenttype
-  pk: 8
-- fields: {app_label: account, model: medication, name: medication}
-  model: contenttypes.contenttype
-  pk: 10
-- fields: {app_label: auth, model: message, name: message}
-  model: contenttypes.contenttype
-  pk: 4
-- fields: {app_label: auth, model: permission, name: permission}
-  model: contenttypes.contenttype
-  pk: 1
-- fields: {app_label: sessions, model: session, name: session}
-  model: contenttypes.contenttype
-  pk: 6
-- fields: {app_label: sites, model: site, name: site}
-  model: contenttypes.contenttype
-  pk: 7
-- fields: {app_label: auth, model: user, name: user}
-  model: contenttypes.contenttype
-  pk: 3
-- fields: {app_label: account, model: usermedication, name: user medication}
-  model: contenttypes.contenttype
-  pk: 11
-- fields: {app_label: account, model: usermedicationlog, name: user medication log}
-  model: contenttypes.contenttype
-  pk: 13
-- fields: {app_label: account, model: usermedicationschedule, name: user medication
-      schedule}
-  model: contenttypes.contenttype
-  pk: 12
-- fields: {app_label: account, model: userprofile, name: user profile}
-  model: contenttypes.contenttype
-  pk: 9
-- fields: {expire_date: !!timestamp '2011-10-09 04:11:26.179522', session_data: 'gAJ9cQEoVQ1fYXV0aF91c2VyX2lkcQJLAVUSX2F1dGhfdXNlcl9iYWNrZW5kcQNVKWRqYW5nby5j
-
-      b250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kcQR1LjE1NmRiMTFhZWYwYTY4YmRhNDli
-
-      MmQwMGIzZTE0YTJm
-
-      '}
-  model: sessions.session
-  pk: 12fb2bbb11e2a4f3821ff994e92178b3
-- fields: {expire_date: !!timestamp '2011-10-09 05:19:45.757749', session_data: 'gAJ9cQEoVQp0ZXN0Y29va2llcQJVBndvcmtlZHEDVQ1fYXV0aF91c2VyX2lkcQRLAlUSX2F1dGhf
-
-      dXNlcl9iYWNrZW5kcQVVKWRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5k
-
-      cQZ1LjM5OTc0OTMwN2VjOGQ2MTNlYjBiNmIzYTAyODRjZTQ3
-
-      '}
-  model: sessions.session
-  pk: 0e7a16cc5529181aa93411a10567aea4
 - fields: {domain: example.com, name: example.com}
   model: sites.site
   pk: 1
@@ -352,12 +294,33 @@
     user: 1}
   model: admin.logentry
   pk: 1
-- fields: {phone: '6509062671', tz: US/Pacific, user: 1}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 1, picture_name: male1.jpg}
   model: account.userprofile
   pk: 1
-- fields: {phone: '6509062671', tz: US/Pacific, user: 2}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 2, picture_name: female1.jpg}
   model: account.userprofile
   pk: 2
+- fields: {phone: '6509062671', tz: US/Pacific, user: 3, picture_name: male3.jpg}
+  model: account.userprofile
+  pk: 3
+- fields: {phone: '6509062671', tz: US/Pacific, user: 4, picture_name: male4.jpg}
+  model: account.userprofile
+  pk: 4
+- fields: {phone: '6509062671', tz: US/Pacific, user: 5, picture_name: male5.jpg}
+  model: account.userprofile
+  pk: 5
+- fields: {phone: '6509062671', tz: US/Pacific, user: 6, picture_name: male6.jpg}
+  model: account.userprofile
+  pk: 6
+- fields: {phone: '6509062671', tz: US/Pacific, user: 7, picture_name: female7.jpg}
+  model: account.userprofile
+  pk: 7
+- fields: {phone: '6509062671', tz: US/Pacific, user: 8, picture_name: male8.jpg}
+  model: account.userprofile
+  pk: 8
+- fields: {phone: '6509062671', tz: US/Pacific, user: 9, picture_name: female9.jpg}
+  model: account.userprofile
+  pk: 9
 - fields: {name: Vitamin C, picture_name: 200pxSyringe.jpg}
   model: account.medication
   pk: 1
@@ -614,13 +577,13 @@
 - fields:
     date_joined: 2011-09-24 21:53:05.572882
     email: khomenko@gmail.com
-    first_name: ''
+    first_name: Alex
     groups: []
     is_active: true
     is_staff: true
     is_superuser: true
     last_login: 2011-09-25 04:11:26.168461
-    last_name: ''
+    last_name: Khomenko
     password: sha1$e1321$f707ac1c824f18d3615fd293bd1b7a5d420bcc80
     user_permissions: []
     username: khomenko@gmail.com
@@ -641,3 +604,133 @@
     username: martha.landis@gmail.com
   model: auth.user
   pk: 2
+- fields:
+    date_joined: 2011-09-25 03:45:25
+    email: steve.landis@gmail.com
+    first_name: Steve
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2011-09-25 05:19:45.748014
+    last_name: Landis
+    password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
+    user_permissions: []
+    username: steve.landis@gmail.com
+  model: auth.user
+  pk: 3
+- fields:
+    date_joined: 2011-09-25 03:45:25
+    email: greg.landis@gmail.com
+    first_name: Greg
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2011-09-25 05:19:45.748014
+    last_name: Landis
+    password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
+    user_permissions: []
+    username: greg.landis@gmail.com
+  model: auth.user
+  pk: 4
+- fields:
+    date_joined: 2011-09-25 03:45:25
+    email: marvin.thompson@gmail.com
+    first_name: Marvin
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2011-09-25 05:19:45.748014
+    last_name: Thompson
+    password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
+    user_permissions: []
+    username: marvin.thompson@gmail.com
+  model: auth.user
+  pk: 5
+- fields:
+    date_joined: 2011-09-25 03:45:25
+    email: brian.lansing@gmail.com
+    first_name: Brian
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2011-09-25 05:19:45.748014
+    last_name: Lansing
+    password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
+    user_permissions: []
+    username: brian.lansing@gmail.com
+  model: auth.user
+  pk: 6
+- fields:
+    date_joined: 2011-09-25 03:45:25
+    email: anna.lee@gmail.com
+    first_name: Anna
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2011-09-25 05:19:45.748014
+    last_name: Lee
+    password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
+    user_permissions: []
+    username: anna.lee@gmail.com
+  model: auth.user
+  pk: 7
+- fields:
+    date_joined: 2011-09-25 03:45:25
+    email: fred.trust@gmail.com
+    first_name: Fred
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2011-09-25 05:19:45.748014
+    last_name: Trust
+    password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
+    user_permissions: []
+    username: fred.trust@gmail.com
+  model: auth.user
+  pk: 8
+- fields:
+    date_joined: 2011-09-25 03:45:25
+    email: sylvia.gomez@gmail.com
+    first_name: Sylvia
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2011-09-25 05:19:45.748014
+    last_name: Gomez
+    password: sha1$57670$1667d5df66eb30783f3a9230b45452a10fb0b523
+    user_permissions: []
+    username: sylvia.gomez@gmail.com
+  model: auth.user
+  pk: 9
+- fields: {user: 2, link: 1}
+  model: account.usernetwork
+  pk: 1
+- fields: {user: 2, link: 3}
+  model: account.usernetwork
+  pk: 2
+- fields: {user: 2, link: 4}
+  model: account.usernetwork
+  pk: 3
+- fields: {user: 2, link: 5}
+  model: account.usernetwork
+  pk: 4
+- fields: {user: 2, link: 6}
+  model: account.usernetwork
+  pk: 5
+- fields: {user: 2, link: 7}
+  model: account.usernetwork
+  pk: 6
+- fields: {user: 2, link: 8}
+  model: account.usernetwork
+  pk: 7
+- fields: {user: 2, link: 9}
+  model: account.usernetwork
+  pk: 8
+

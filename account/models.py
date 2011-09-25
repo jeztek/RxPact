@@ -8,9 +8,17 @@ class UserProfile(models.Model):
     user  = models.ForeignKey(User, unique=True)
     tz    = models.CharField(max_length=50, choices=SettingsForm.tzchoices)
     phone = models.CharField(max_length=10)
+    picture_name = models.CharField(max_length=50, null=True)
 
     def __unicode__(self):
         return self.user.username
+
+class UserNetwork(models.Model):
+    user = models.ForeignKey(User, related_name='user')
+    link = models.ForeignKey(User, related_name='link')
+
+    def __unicode__(self):
+        return unicode(self.user.username)
 
 class Medication(models.Model):
     name = models.CharField(max_length=50)
