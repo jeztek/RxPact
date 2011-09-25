@@ -310,16 +310,18 @@ function set_current() {
   current_time.setMinutes(parts[1]);
   set_times();
 }
+  
+var meowInterval; 
 
 function meds_fail(id) {
-  setTimeout("EvalSound('meow_hungry')",0);
-  setTimeout("EvalSound('meow_hungry')",3000);
-  setTimeout("EvalSound('meow_hungry')",6000);
+  EvalSound('meow_hungry');
+  meowInterval = setInterval("EvalSound('meow_hungry')",3000);
   $(".network#network_"+id+" .bowl").removeClass("full").addClass("empty").delay(5000).addClass("hungry");
 }
 
 function meds_success(id) {
-  $(".network#network_"+id+" .bowl").removeClass("empty").addClass("full");
+  clearInterval(meowInterval);
+  $(".network#network_"+id+" .bowl").removeClass("empty").removeClass("hungry").addClass("full");
   EvalSound("pour_food");
   add_cat();
 }
