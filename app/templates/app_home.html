@@ -114,7 +114,7 @@
 }
 
 #network_title {
-  font-size: 2em;
+  font-size: 1.8em;
   margin-bottom: 20px;
 }
 
@@ -384,6 +384,9 @@ jQuery(function() {
     $("#time_slot_" + current_slot).css("display", "none");
     // tell the cat side that user 0 succeeded in taking their meds
     meds_success({{ user.id }});
+
+    // now go into the portion where your friends take their meds
+    simulate_friends_taking_meds();
   });
 
   // set relative times
@@ -402,6 +405,24 @@ jQuery(function() {
   
 
 });
+
+function simulate_friends_taking_meds() {
+
+  // chain two timers			
+  window.setTimeout(function() {
+    meds_success({{ user_network.2.link.id }});
+    window.setTimeout(function() {
+      meds_success({{ user_network.1.link.id }});
+      window.setTimeout(function() {
+        simulate_friends_forgetting_meds();
+      }, 10000);
+    }, 10000);
+  }, 10000);
+}
+
+function simulate_friends_forgetting_meds()  {
+  meds_fail({{ user_network.3.id }});
+}
 
 </script>
 
@@ -450,7 +471,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
 <div class="pane right-pane" id="network">
 
-  <div id="network_title">My Cats</div>
+  <div id="network_title">How Many Cats Can We Feed Today?</div>
   
   <div class="cats" data-num-cats="4"></div>
   
