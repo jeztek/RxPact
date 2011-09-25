@@ -199,6 +199,24 @@
   background-color: #63A120;
 }
 
+#med_info {
+  display: none;
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  padding: 10px;
+}
+
+#med_info_container {
+  margin-top: 10px;
+  font-size: 0.9em;
+  text-align: left;
+}
+
+#med_info li {
+  margin-bottom: 5px;
+}
+
 </style>
 
 <script>
@@ -377,6 +395,18 @@ jQuery(function() {
     );
   });
 
+  $(".med_image").click(function(e) {
+    $.getJSON('http://spl.anzonow.com/query?uri=http%3A//spl-ld.anzonow.com/data/Section1', function(data) {
+        $("#med_info_container").html(data.summary);
+        $("#med_info").lightbox_me({
+          centered: true,
+          onLoad: function() {
+            $("#med_info").corner("8px");
+          }
+        });
+     });
+  });
+
   $(".team a").click(function(e) {
     var id = this.id.split("_")[2];
     $("#msg_send").lightbox_me({
@@ -396,6 +426,10 @@ jQuery(function() {
 
     // now go into the portion where your friends take their meds
     simulate_friends_taking_meds();
+  });
+
+  $("#med_info_done").click(function(e) {
+    $("#med_info").trigger("close");
   });
 
   // set relative times
@@ -553,6 +587,15 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
     <div>Thank you! Great job, your group is sharing in your success.</div>
   </div>
   <span><button id="congrats_done" type="submit">Done</button></span>
+</div>
+
+<div id="med_info">
+  <img src="http://spl.anzonow.com/images/novartislogosmall.png" />
+  <br class="clearer" />
+  <div id="med_info_container">
+
+  </div>
+  <div><button id="med_info_done" type="submit">Done</button></div>
 </div>
 {% endblock body %}
 
