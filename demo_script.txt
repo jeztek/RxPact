@@ -1,0 +1,40 @@
+1. 5:30AM (night time image) (Maybe skip this stage)
+You have a list of meds but it's not time yet. You have buddies. They each have a cat feeding at the bowl.
+
+* Transition: hit button for 8AM
+
+2. 8:10AM (early morning image)
+It's time to take your first meds (image of daytime).
+Your bowl is empty
+Your meds are flashing or whetever to indicate it's time.
+Later meds are grayed out but you can see the whole schedule.
+* Click on each med (or one overall button) to show that you've taken them. When you've marked them all
+  -- left side switches to taken state
+  -- initiates the congratulations dialog, which fades after a little
+     -- Glad you took your meds mom. JJ says "I can't wait to see you on Friday, Grandma.". Picture of little boy
+  -- bowl fills on right side, with cool sound or whatever
+
+* Transition: hit button for 9PM
+
+3. 9:00 PM (night image)
+Lots of cats now.
+One of your buddies has an empty bowl, flashing, distressed meow or whatever
+* Click on the empty bowl
+--pops up the messaging dialog
+  -- add an SMS message, "Hey, don't forget your meds! I want to see another cat! And I've left a cute photo for you!"
+  -- add a post-meds message, "Puppies are nice, too! See you tomorrow."
+
+* Transition: hit button for 9:15PM
+
+4. 9:15PM (night image)
+Different user, the one you sent SMS to
+* Clicks to indicate took meds
+-- Gets the puppy photo.
+
+DONE
+
+------------------
+meow noise .wav
+distressed meow
+sound of pouring food into a bowl
+
