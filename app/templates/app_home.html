@@ -311,6 +311,13 @@ function set_current() {
   set_times();
 }
 
+function meds_fail(id) {
+  setTimeout("EvalSound('meow_hungry')",0);
+  setTimeout("EvalSound('meow_hungry')",3000);
+  setTimeout("EvalSound('meow_hungry')",6000);
+  $(".network#network_"+id+" .bowl").removeClass("full").addClass("empty").delay(5000).addClass("hungry");
+}
+
 function meds_success(id) {
   $(".network#network_"+id+" .bowl").removeClass("empty").addClass("full");
   EvalSound("pour_food");
@@ -393,6 +400,7 @@ jQuery(function() {
     $(".bowl.hungry").toggleClass("red");    
   }, 300);
   
+
 });
 
 </script>
@@ -400,7 +408,8 @@ jQuery(function() {
 <!-- Preload Sound Files -->
 <embed src="/static/sounds/pour_food.wav" autostart=false width=1 height=1 id="pour_food" enablejavascript="true">
 <embed src="/static/sounds/meow_hungry.wav" autostart=false width=1 height=1 id="meow_hungry" enablejavascript="true">
-<!-- <span onClick="EvalSound('sound1')">pour</span> -->
+
+<span onClick="meds_fail(2)">go</span>
 
 {% endblock head %}
 
@@ -457,7 +466,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
     {% for entry in user_network %}
       <div class="network" id="network_{{ entry.link.id }}">
         <a href="#" id="network_imglink_{{ entry.link.id }}">
-        <div class="bowl empty"></div>
+        <div class="bowl full"></div>
         <br/>
         <img src="/static/img/avatars/medium/{{ entry.link.get_profile.picture_name }}" style="border-bottom: 6px solid {{ entry.color }}"/></a>
         <br />
