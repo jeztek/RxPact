@@ -6,8 +6,6 @@
 
 .pane {
   color: #000;
-//  margin: 10px;
-//  border: 1px solid #000;
 }
 
 .left-pane {
@@ -23,27 +21,34 @@
 }
 
 .medication {
-
+  margin-top: 50px;
+  margin-bottom: 100px;
 }
 
-.medication .you_time {
+.medication .you_relative_time {
   font-size: 3em;
-  float: left;
+}
+
+.medication .you_absolute_time {
+  font-size: 2em;
+  color: #aaa;
+  margin-bottom: 10px;
 }
 
 .medication .you_med {
-  float: right;
+  padding-left: 50px;
   font-size: 1em;
 }
 
 .medication .you_med div {
+  display: inline-block;
   padding-right: 50px;
   padding-bottom: 10px;
   text-align: center;
 }
 
 .medication .you_med div img {
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 </style>
@@ -52,6 +57,8 @@
 
   jQuery(function() {
   $("img").corner();
+
+  $("#you_med")
   //$("#you").html("Hello world!");
   });
 
@@ -63,14 +70,29 @@
 
 <div class="pane left-pane" id="you">
   <div class="medication">
-    <span class="you_time">12:30PM</span>
-    <span class="you_med">
+
+    <div>
+      <div class="you_relative_time">in 12 minutes</div>
+      <div class="you_absolute_time">@12:30 PM</div>
+    </div>
+    <div class="you_med">
       <div><img src="http://placekitten.com/64/64" /><br />Zoloft</div>
       <div><img src="http://placekitten.com/64/64" /><br />Azithromycin</div>
-      <div><img src="http://placekitten.com/64/64" /><br />Clindamycin</div>
-    </span>
+    </div>
   </div>
 
+  <div class="medication">
+    <div>
+      <div class="you_relative_time">5:30PM</div>
+      <div class="you_absolute_time">in 5 hours</div>
+    </div>
+    <div class="you_med">
+      <div><img src="http://placekitten.com/64/64" /><br />Zoloft</div>
+      <div><img src="http://placekitten.com/64/64" /><br />Zoloft</div>
+      <div><img src="http://placekitten.com/64/64" /><br />Azithromycin</div>
+    </div>
+
+  </div>
 </div>
 
 <div class="pane right-pane" id="network">
