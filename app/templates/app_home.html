@@ -402,9 +402,9 @@ function simulate_friends_taking_meds() {
 
   // chain two timers			
   window.setTimeout(function() {
-    meds_success({{ user_network.2.id }});
+    meds_success({{ user_network.2.link.id }});
     window.setTimeout(function() {
-      meds_success({{ user_network.1.id }});
+      meds_success({{ user_network.1.link.id }});
       window.setTimeout(function() {
         simulate_friends_forgetting_meds();
       }, 10000);
