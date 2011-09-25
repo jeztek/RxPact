@@ -262,10 +262,11 @@ o#network_title {
 
 
 #med_info {
+  border: 8px solid #444;
   display: none;
   width: 600px;
-  height: 600px;
-  background-color: white;
+  height: 580px;
+  background-color: #fff;
   padding: 10px;
 }
 
@@ -279,6 +280,16 @@ o#network_title {
   margin-bottom: 5px;
 }
 
+#med_info button {
+  margin-top: 20px;
+  font-size: 1.2em;
+  width: 100px;
+}
+
+.team img {
+  max-width: 100px;
+  max-height: 100px;
+}
 
 </style>
 
@@ -721,7 +732,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
   <img src="http://spl.anzonow.com/images/novartislogosmall.png" />
   <br class="clearer" />
   <div id="med_info_container"></div>
-  <div><button id="med_info_done" type="submit">Done</button></div>
+  <div><button id="med_info_done" type="submit">Close</button></div>
 </div>
 
 {% endblock body %}
