@@ -6,7 +6,7 @@
 
 #header {
   margin-left: 6px;
-  margin-top: 30px;
+  //margin-top: 10px;
   font-size: 1em;
 }
 
@@ -344,7 +344,7 @@ Date.prototype.formatDate = function(format)
 var current_time = new Date();
 var current_slot = 0;
 current_time.setHours(7);
-current_time.setMinutes(59);
+current_time.setMinutes(58);
 var schedule = {{ schedule_json|safe }};
 
 function set_times() {
@@ -392,7 +392,7 @@ var meowInterval;
 
 function meds_fail(id) {
   EvalSound('meow_hungry');
-  meowInterval = setInterval("EvalSound('meow_hungry')",3000);
+  meowInterval = setInterval("EvalSound('meow_hungry')",10000);
   $(".network#network_"+id+" .bowl").removeClass("full").addClass("empty").delay(5000).addClass("hungry");
 }
 
@@ -554,17 +554,17 @@ function simulate_friends_taking_meds() {
             simulate_friends_forgetting_meds();
 	  
           }, 10000);
-        }, 5000);
+        }, 3000);
       }, 10000);
-    }, 5000);
-  }, 10000);
+    }, 3000);
+  }, 30000);
 }
 
 function simulate_friends_forgetting_meds()  {
   meds_fail({{ user_network.3.link.id }});
 }
 
-
+$("#current_time").click(function(e) { set_current(); });
 
 </script>
 
@@ -579,7 +579,8 @@ function simulate_friends_forgetting_meds()  {
 <!-- <span onClick="meds_fail(2)">go</span> -->
 
 <div id="header">
-It is currently <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">[set]</a>
+<!--It is currently <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">[set]</a>-->
+<span id="current_time" style="font-size: 2em; border-radius: 15px; background-color: #f2ffe1; padding: 5px;"></span>
 </div>
 
 <br style="clear: both" />
@@ -613,7 +614,8 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
 <div class="pane right-pane" id="network">
 
-  <div id="network_title">How Many Cats Can We Feed Today?</div>
+  <!--<div id="network_title">How Many Cats Can We Feed Today?</div>-->
+  <div id="network_title">Friends Say: Take Your Meds Meow!</div>
   
   <div class="cats_and_team" style="position: relative;">
     
