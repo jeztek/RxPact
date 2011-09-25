@@ -118,6 +118,19 @@
   background-color:#5cb811;
 }
 
+#msg_send {
+  display: none;
+  width: 280px;
+  height: 160px;
+  padding-top: 20px;
+  background-color: #63A120;
+}
+
+#msg_send #msg_body {
+  width: 240px;
+  height: 100px;
+}
+
 </style>
 
 <script>
@@ -231,6 +244,17 @@ function set_current() {
 
 jQuery(function() {
 
+  var RXPACT = RXPACT || {};
+
+  RXPACT.sendSms = function() {
+    $.post("/sms/", {
+      "id" : id,
+      "msg" : $("#msg_send #msg_body").html()
+    }, function(data) {
+      alert($("#msg_send #msg_body").html());
+    });
+  };			 
+
   $("#title").corner("bl br 5px");
   $("img").corner("8px");
 
@@ -243,13 +267,14 @@ jQuery(function() {
     );
   });
 
-  $(".network a").click(function() {
+  $(".network a").click(function(e) {
     var id = this.id.split("_")[2];
-    console.log(id);
-    $.post("/sms/", {
-      "id" : id,
-      "msg" : "Hello"
-    });    
+    $("#msg_send").lightbox_me({
+      centered: true,
+      onLoad: function() {
+        $("#msg_send").corner("8px");
+      }
+    });
   });
 
   // set relative times
@@ -307,7 +332,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
   <div id="network_title">My Network</div>
   {% for entry in user_network %}
-    <div class="network">
+    <div class="network" id="network_{{ entry.link.id }}">
       <a href="#" id="network_imglink_{{ entry.link.id }}">
       <img src="/static/img/avatars/medium/{{ entry.link.get_profile.picture_name }}" style="border-bottom: 6px solid {{ entry.color }}"/></a>
       <br /><a href="#" id="network_namelink_{{ entry.link.id }}">{{ entry.link.first_name }}</a>
@@ -317,5 +342,19 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
 <br style="clear: both;" />
 
+<div id="msg_send">
+  <div id="msg_container">
+    <div id="msg_title">Send a cheery message</div>
+    <div id="msg_to"></div>
+    <form action="#" method="post" onSubmit=RXPACT.sendSms()>
+      {% csrf_token %}
+      <div>
+	<textarea id="msg_body"></textarea>
+      </div>
+
+      <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
+    </form>
+  </div>
+</div>
 {% endblock body %}
 
