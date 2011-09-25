@@ -38,8 +38,8 @@ class UserMedicationSchedule(models.Model):
     def to_dict(self):
         return {
             "name" : self.user_med.medication.name, 
-            "img" : '/img/%s.png' % self.user_med.medication.name.lower().replace(' ', ''),
-            "dose" : str(self.dosage_count) + " " + self.dosage + pluralize(self.dosage_count),
+            "picture_name" : self.user_med.medication.picture_name,
+            "dose" : str(self.dosage_count) + " x " + self.dosage,
             }
 
 class UserMedicationLog(models.Model):

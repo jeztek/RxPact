@@ -4,6 +4,13 @@
 
 <style>
 
+#header {
+  text-align: center;
+  padding: 10px;
+  margin: 0px auto;
+  width: 500px;
+}
+
 .pane {
   color: #000;
 }
@@ -21,7 +28,7 @@
 }
 
 .medication {
-  margin-bottom: 40px;
+  margin-bottom: 20px;
 }
 
 .medication .you_relative_time {
@@ -41,7 +48,7 @@
 
 .medication .you_med div {
   display: inline-block;
-  padding-right: 50px;
+  padding-right: 20px;
   padding-bottom: 10px;
   text-align: center;
 }
@@ -54,19 +61,51 @@
   opacity: 0.25;
 }
 
+.med_image {
+  max-width: 100px;
+  max-height: 100px;
+}
+
 </style>
 
 <script>
 
+String.repeat = function(chr,count)
+{    
+    var str = ""; 
+    for(var x=0;x<count;x++) {str += chr}; 
+    return str;
+}
+
+String.prototype.padL = function(width,pad)
+{
+    if (!width ||width<1)
+        return this;   
+
+    if (!pad) pad=" ";        
+    var length = width - this.length
+    if (length < 1) return this.substr(0,width);
+
+    return (String.repeat(pad,length) + this).substr(0,width);    
+}    
+
+String.prototype.padR = function(width,pad)
+{
+    if (!width || width<1)
+        return this;        
+
+    if (!pad) pad=" ";
+    var length = width - this.length
+    if (length < 1) this.substr(0,width);
+
+    return (this + String.repeat(pad,length)).substr(0,width);
+} 
+
 Date.prototype.formatDate = function(format)
 {
-    var date = this;
-    s = date.getHours() + ":" + date.getMinutes();
+    var date=this;
 
-    return s;
-
-/*    if (!format)
-
+    if (!format)
       format="MM/dd/yyyy";               
  
     var month = date.getMonth() + 1;
@@ -101,19 +140,20 @@ Date.prototype.formatDate = function(format)
     if (format.indexOf("ss") > -1)
        format = format.replace("ss",date.getSeconds().toString().padL(2,"0"));
     return format;
-*/
 }
 
+// it's always between 7 and 8 here
 var current_time = new Date();
+current_time.setHours(7);
 var schedule = {{ schedule_json|safe }};
 
 function set_times() {
-  $("#current_time").html(current_time.formatDate("yyyy-MM-dd HH:mm"));
+  $("#current_time").html(current_time.formatDate("HH:mm"));
 
   for (var i in schedule) {
     slot = schedule[i];
     // weird timezone correction? sigh
-    minutes_away = ((new Date(slot.time.$date) - current_time) - 17 * 3600 * 1000) / (60 * 1000);
+    minutes_away = Math.floor(((new Date(slot.time.$date) - current_time) - 17 * 3600 * 1000) / (60 * 1000));
     if (minutes_away < 0) {
       $("#time_slot_" + i).addClass("past");
     } else if (minutes_away < 60) {
@@ -148,6 +188,12 @@ window.setInterval(function() {
 
 {% block body %}
 
+<div id="header">
+Welcome {{ user.first_name }}! Current time is <span id="current_time"></span>
+</div>
+
+<br style="clear: both;" />
+
 <div class="pane left-pane" id="you">
   {% for time_slot in schedule %}
     <div class="medication" id="time_slot_{{ forloop.counter0 }}">  
@@ -157,7 +203,7 @@ window.setInterval(function() {
       </div>
       <div class="you_med">
         {% for med in time_slot.meds %}
-          <div><img src="http://placekitten.com/64/64" /><br />{{ med.name }}</div>
+          <div><img class="med_image" src="/static/img/{{ med.picture_name }}" /><br />{{ med.name }}<br />{{ med.dose }}</div>
         {% endfor %}
       </div>
     </div>
@@ -192,10 +238,6 @@ window.setInterval(function() {
 </div>
 
 <div class="pane right-pane" id="network">
-
-  <div id="current_time"></div>
-
-  <br style="clear: both;" />
 
   <div id="network_title">My Network</div>
   <table>
