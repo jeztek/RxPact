@@ -8,7 +8,6 @@
   text-align: center;
   padding: 10px;
   margin: 0px auto;
-  width: 500px;
 }
 
 .pane {
@@ -42,7 +41,7 @@
 }
 
 .medication .you_med {
-  padding-left: 50px;
+  padding-left: 20px;
   font-size: 1em;
 }
 
@@ -64,6 +63,34 @@
 .med_image {
   max-width: 100px;
   max-height: 100px;
+}
+
+.button {
+  //vertical-align: middle;
+  -moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+  box-shadow:inset 0px 1px 0px 0px #caefab;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77d42a), color-stop(1, #5cb811) );
+  background:-moz-linear-gradient( center top, #77d42a 5%, #5cb811 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77d42a', endColorstr='#5cb811');
+  background-color:#77d42a;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #268a16;
+  display:inline-block;
+  color:#306108;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:4px 8px;
+  text-decoration:none;
+  text-shadow:1px 1px 0px #aade7c;
+}.button:active {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #5cb811), color-stop(1, #77d42a) );
+  background:-moz-linear-gradient( center top, #5cb811 5%, #77d42a 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5cb811', endColorstr='#77d42a');
+  background-color:#5cb811;
 }
 
 </style>
@@ -149,9 +176,11 @@ var schedule = {{ schedule_json|safe }};
 
 function set_times() {
   var relative_time_slot;
+  var i, len;
+
   $("#current_time").html(current_time.formatDate("HH:mm"));
 
-  for (var i in schedule) {
+  for (i=0; len = schedule.length, i < len; i+=1) {
     slot = schedule[i];
     relative_time_slot = $("#time_slot_" + i).find(".you_relative_time");
     minutes_away = Math.floor((new Date(slot.timestamp) - current_time) / 60000);
@@ -180,16 +209,26 @@ jQuery(function() {
 
   $("img").corner();
 
+  $(".button").click(function() {
+    var time_slot = $("#time_slot_" + this.id.split("_")[1]);
+    $.post("/done/", { "id" : 0 }, 
+      function(data) {
+        time_slot.css("display", "none");
+      }
+    );
+  });
+
   // set relative times
   set_times();
 
+  // advance current time on a timer
+  window.setInterval(function() {  
+    current_time.setTime(current_time.getTime() + 10000);
+    set_times();
+  }, 10000);
+
 });
 
-// advance current time on a timer
-window.setInterval(function() {  
-  current_time.setTime(current_time.getTime() + 10000);
-  set_times();
-}, 10000);
 
 </script>
 
@@ -201,7 +240,7 @@ window.setInterval(function() {
 Hello {{ user.first_name }}! The current time is <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">set</a>
 </div>
 
-<br style="clear: both;" />
+<br style="clear: both" />
 
 <div class="pane left-pane" id="you">
   {% for time_slot in schedule %}
@@ -210,11 +249,22 @@ Hello {{ user.first_name }}! The current time is <span id="current_time"></span>
 	<div class="you_relative_time"></div>
         <div class="you_absolute_time">{{ time_slot.time }}</div>
       </div>
-      <div class="you_med">
-        {% for med in time_slot.meds %}
-          <div><img class="med_image" src="/static/img/{{ med.picture_name }}" /><br />{{ med.name }}<br />{{ med.dose }}</div>
-        {% endfor %}
-      </div>
+      <table>
+	<tr>
+	  <td>
+	    <div id="action_{{ forloop.counter0 }}">
+	      <a href="#" class="button" id="button_{{ forloop.counter0 }}">Done</a>
+	    </div>
+	  </td>
+	  <td>
+	    <div class="you_med">
+            {% for med in time_slot.meds %}
+              <div><img class="med_image" src="/static/img/{{ med.picture_name }}" /><br />{{ med.name }}<br />{{ med.dose }}</div>
+            {% endfor %}
+            </div>
+	  </td>
+	</tr>
+      </table>
     </div>
   {% endfor %}
 </div>

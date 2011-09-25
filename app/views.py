@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
+from django.views.decorators.csrf import csrf_exempt
 from django import forms
 try:
     import json
@@ -59,3 +60,7 @@ def home(request, message=None):
         'schedule_json' : json.dumps(schedule, ensure_ascii=False),
     }, context_instance = RequestContext(request))
 
+
+@csrf_exempt
+def done(request):
+    return JsonResponse({"success" : True})
