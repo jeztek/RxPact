@@ -96,6 +96,10 @@
   background-color:#5cb811;
 }
 
+.hidden {
+  display: none;
+}
+
 #msg_send {
   display: none;
   width: 280px;
@@ -108,7 +112,6 @@
   width: 240px;
   height: 100px;
 }
-
 
 #network_title {
   font-size: 2em;
@@ -181,6 +184,13 @@
 
 .clearer {
   clear: both;
+
+#congrats {
+  display: none;
+  width: 500px;
+  height: 150px;
+  padding-top: 20px;
+  background-color: #63A120;
 }
 
 </style>
@@ -261,7 +271,9 @@ Date.prototype.formatDate = function(format)
 
 // it's always between 7 and 8 here
 var current_time = new Date();
+var current_slot = 0;
 current_time.setHours(7);
+current_time.setMinutes(59);
 var schedule = {{ schedule_json|safe }};
 
 function set_times() {
@@ -271,7 +283,12 @@ function set_times() {
   for (i=0; len = schedule.length, i < len; i+=1) {
     slot = schedule[i];
     relative_time_slot = $("#time_slot_" + i).find(".you_relative_time");
-    minutes_away = Math.floor((new Date(slot.timestamp) - current_time) / 60000);
+    minutes_away = Math.ceil((new Date(slot.timestamp) - current_time) / 60000);
+    if (minutes_away == 0) {
+        $("#action_" + i).removeClass("hidden");
+        // tell the cat side that user 0 needs to start taking meds
+        // meds_start(0);
+    }
     if (minutes_away < 0) {
       relative_time_slot.addClass("past");
       relative_time_slot.html(-minutes_away + " minutes ago");
@@ -316,10 +333,17 @@ jQuery(function() {
   $("img").corner("8px");
 
   $(".button").click(function() {
-    var time_slot = $("#time_slot_" + this.id.split("_")[1]);
+    current_slot = this.id.split("_")[1];
+    var time_slot = $("#time_slot_" + current_slot);
     $.post("/done/", { "id" : 0 }, 
       function(data) {
-        time_slot.css("display", "none");
+        //time_slot.css("display", "none");
+        $("#congrats").lightbox_me({
+          centered: true,
+          onLoad: function() {
+            $("#congrats").corner("8px");
+        }
+    });
       }
     );
   });
@@ -332,6 +356,13 @@ jQuery(function() {
         $("#msg_send").corner("8px");
       }
     });
+  });
+
+  $("#congrats_done").click(function(e) {
+    $("#congrats").trigger("close");
+    $("#time_slot_" + current_slot).css("display", "none");
+    // tell the cat side that user 0 succeeded in taking their meds
+    // meds_success(0);
   });
 
   // set relative times
@@ -377,8 +408,8 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
       </div>
       <table>
 	<tr>
-	  <td>
-	    <div id="action_{{ forloop.counter0 }}">
+	  <td style="min-width: 50px;">
+	    <div id="action_{{ forloop.counter0 }}" class="hidden">
 	      <a href="#" class="button" id="button_{{ forloop.counter0 }}">Done</a>
 	    </div>
 	  </td>
@@ -440,6 +471,13 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
       <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
     </form>
   </div>
+</div>
+
+<div id="congrats">
+  <div id="congrats_container">
+    <div>Thank you! Great job, your group is sharing in your success.</div>
+  </div>
+  <span><button id="congrats_done" type="submit">Done</button></span>
 </div>
 {% endblock body %}
 
