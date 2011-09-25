@@ -126,7 +126,7 @@
   width: 100px;
 }
 
-o#network_title {
+#network_title {
   font-size: 1.8em;
   margin-bottom: 20px;
   z-index: 10;
@@ -421,8 +421,8 @@ function set_time_to(h, m) {
 var meowInterval; 
 
 function meds_fail(id) {
-  EvalSound('meow_hungry');
-  meowInterval = setInterval("EvalSound('meow_hungry')",10000);
+  EvalSound("meow_hungry");
+  meowInterval = setInterval("EvalSound('meow_hungry')",6000);
   $(".network#network_"+id+" .bowl").removeClass("full").addClass("empty").delay(5000).addClass("hungry");
 }
 
@@ -483,6 +483,7 @@ jQuery(function() {
       });
       $("#remind_msg_body").val('');
       $("#msg_send").trigger("close");
+      meds_success({{ user_network.3.link.id }});
       return false;
     }
   }
@@ -640,6 +641,9 @@ $("#current_time").click(function(e) { set_current(); });
       </table>
     </div>
   {% endfor %}
+
+  <a href="javascript:set_current();" style="opacity: 0.25;">[set]</a>
+
 </div>
 
 <div class="pane right-pane" id="network">
