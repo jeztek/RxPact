@@ -21,8 +21,9 @@ from account.forms import Timezone as TimezoneForm
 dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime.datetime) or isinstance(obj, datetime.time) else None
 
 # Return JSON encoded representation of object as text response
+from bson import json_util
 def JsonResponse(obj):
-    return HttpResponse(json.dumps(obj, ensure_ascii=False, default=dthandler),
+    return HttpResponse(json.dumps(obj, ensure_ascii=False, default=json_util.default),
                         mimetype="text/plain; charset=\"utf-8\"")
 
     
@@ -36,11 +37,20 @@ def home(request, message=None):
 
     # load schedule for each medication and flatten into one list
     user_med_times = list(flatten([um.usermedicationschedule_set.all() for um in user_meds]))
-    medications = []
+
+    schedule = []
+    today = datetime.datetime.today()
+
+    # hash by time
+    keyfunc = attrgetter('time_scheduled')
+    user_med_times = sorted(user_med_times, key=keyfunc)
+    for (t, meds) in groupby(user_med_times, keyfunc):
+        schedule.append({ "time" : datetime.datetime.combine(today, t), "meds" : [m.to_dict() for m in meds]})
 
     return render_to_response('app_home.html', {
-        'message'      : message,
-        'medications'  : medications,
+        'message'   : message,
+        'schedule'  : schedule,
+        'schedule_json' : json.dumps(schedule, ensure_ascii=False, default=json_util.default),
     }, context_instance = RequestContext(request))
 
 def flatten(listOfLists):

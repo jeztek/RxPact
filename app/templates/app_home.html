@@ -21,8 +21,7 @@
 }
 
 .medication {
-  margin-top: 50px;
-  margin-bottom: 100px;
+  margin-bottom: 40px;
 }
 
 .medication .you_relative_time {
@@ -51,16 +50,97 @@
   vertical-align: middle;
 }
 
+.past {
+  opacity: 0.25;
+}
+
 </style>
 
 <script>
 
-  jQuery(function() {
+Date.prototype.formatDate = function(format)
+{
+    var date = this;
+    s = date.getHours() + ":" + date.getMinutes();
+
+    return s;
+
+/*    if (!format)
+
+      format="MM/dd/yyyy";               
+ 
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();    
+ 
+    format = format.replace("MM",month.toString().padL(2,"0"));        
+ 
+    if (format.indexOf("yyyy") > -1)
+        format = format.replace("yyyy",year.toString());
+    else if (format.indexOf("yy") > -1)
+        format = format.replace("yy",year.toString().substr(2,2));
+ 
+    format = format.replace("dd",date.getDate().toString().padL(2,"0"));
+ 
+    var hours = date.getHours();       
+    if (format.indexOf("t") > -1)
+    {
+       if (hours > 11)
+        format = format.replace("t","pm")
+       else
+        format = format.replace("t","am")
+    }
+    if (format.indexOf("HH") > -1)
+        format = format.replace("HH",hours.toString().padL(2,"0"));
+    if (format.indexOf("hh") > -1) {
+        if (hours > 12) hours - 12;
+        if (hours == 0) hours = 12;
+        format = format.replace("hh",hours.toString().padL(2,"0"));        
+    }
+    if (format.indexOf("mm") > -1)
+       format = format.replace("mm",date.getMinutes().toString().padL(2,"0"));
+    if (format.indexOf("ss") > -1)
+       format = format.replace("ss",date.getSeconds().toString().padL(2,"0"));
+    return format;
+*/
+}
+
+var current_time = new Date();
+var schedule = {{ schedule_json|safe }};
+
+function set_times() {
+  $("#current_time").html(current_time.formatDate("yyyy-MM-dd HH:mm"));
+
+  for (var i in schedule) {
+    slot = schedule[i];
+    // weird timezone correction? sigh
+    minutes_away = ((new Date(slot.time.$date) - current_time) - 17 * 3600 * 1000) / (60 * 1000);
+    if (minutes_away < 0) {
+      $("#time_slot_" + i).addClass("past");
+    } else if (minutes_away < 60) {
+      $("#time_slot_" + i).find(".you_time").html("<div class='you_relative_time'>in " + minutes_away + " minutes</div>");
+    }
+  }
+}
+
+function set_current(t) {
+  h, m = t.split(":");
+  current_time.setHours(h);
+  current_time.setMinutes(m);
+}
+
+jQuery(function() {
+
   $("img").corner();
 
-  $("#you_med")
-  //$("#you").html("Hello world!");
-  });
+  // set relative times
+  set_times();
+
+});
+
+window.setInterval(function() {  
+  current_time.setTime(current_time.getTime() + 10000);
+  set_times();
+}, 10000);
 
 </script>
 
@@ -69,6 +149,21 @@
 {% block body %}
 
 <div class="pane left-pane" id="you">
+  {% for time_slot in schedule %}
+    <div class="medication" id="time_slot_{{ forloop.counter0 }}">  
+      <div>
+        <div class="you_time"></div>
+        <div class="you_absolute_time">@ {{ time_slot.time }}</div>
+      </div>
+      <div class="you_med">
+        {% for med in time_slot.meds %}
+          <div><img src="http://placekitten.com/64/64" /><br />{{ med.name }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+
+<!--  
   <div class="medication">
 
     <div>
@@ -93,9 +188,15 @@
     </div>
 
   </div>
+  -->
 </div>
 
 <div class="pane right-pane" id="network">
+
+  <div id="current_time"></div>
+
+  <br style="clear: both;" />
+
   <div id="network_title">My Network</div>
   <table>
     <tr>
@@ -110,6 +211,12 @@
     </tr>
 
   </table>
+</div>
+
+<br style="clear: both;" />
+
+<div> 
+<a href=""> </a>
 </div>
 
 {% endblock body %}
