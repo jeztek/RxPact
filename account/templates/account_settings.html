@@ -9,7 +9,10 @@
       <form action="{% url account.views.settings %}" method="post">
 	{% csrf_token %}
 	<div id="timezone">
-	  Time zone: {{ timezoneForm.tz }}
+	  Time zone: {{ settingsForm.tz }}
+	</div>
+	<div id="phone">
+	  Phone number: {{ settingsForm.phone }}
 	</div>
 	<input type="submit" value="Save" />
       </form>

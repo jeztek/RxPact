@@ -2,11 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import pluralize
 
-from forms import Timezone as TimezoneForm
+from forms import Settings as SettingsForm
 
 class UserProfile(models.Model):
     user  = models.ForeignKey(User, unique=True)
-    tz    = models.CharField(max_length=50, choices=TimezoneForm.choices)
+    tz    = models.CharField(max_length=50, choices=SettingsForm.tzchoices)
     phone = models.CharField(max_length=10)
 
     def __unicode__(self):
@@ -46,3 +46,7 @@ class UserMedicationLog(models.Model):
     user_med = models.ForeignKey(UserMedication)
     time_scheduled = models.DateTimeField()
     time_taken = models.DateTimeField()
+
+    def __unicode__(self):
+        return unicode(self.user_med)
+    

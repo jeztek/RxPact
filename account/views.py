@@ -7,28 +7,31 @@ from django.contrib.auth.decorators import login_required
 
 from models import User, UserProfile
 
-from forms import Timezone as TimezoneForm
+from forms import Settings as SettingsForm
 from forms import Login as LoginForm
 
 @login_required
 def settings(request):
     message = None
     if request.method == 'POST':
-        form = TimezoneForm(request.POST)
+        form = SettingsForm(request.POST)
         if form.is_valid():
             tz = form.cleaned_data['tz']
+            phone = form.cleaned_data['phone']
             profile = request.user.get_profile()
             profile.tz = tz
+            profile.phone = phone
             profile.save()
             return HttpResponseRedirect('/')
         else:
-            message = "Invalid time zone selection"
-            
-    tz = request.user.get_profile().tz
-    timezoneForm = TimezoneForm(initial={'tz' : tz})
+            message = "Invalid time zone selection or phone number"
+
+    profile = request.user.get_profile()
+    settingsForm = SettingsForm(initial={'tz' : profile.tz,
+                                         'phone' : profile.phone})
     return render_to_response('account_settings.html', {
         'message'      : message,
-        'timezoneForm' : timezoneForm,
+        'settingsForm' : settingsForm,
     }, context_instance=RequestContext(request))
 
 

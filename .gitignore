@@ -3,4 +3,5 @@
 *.pyc
 rxpact.db
 local_settings.py
+twilio_settings.py
 .DS_Store

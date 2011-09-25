@@ -37,7 +37,7 @@
 
 .medication .you_absolute_time {
   font-size: 2em;
-  color: #aaa;
+  color: #555;
   margin-bottom: 10px;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .past {
-  opacity: 0.25;
+  color: #F00;
 }
 
 .med_image {
@@ -82,7 +82,7 @@ String.prototype.padL = function(width,pad)
     if (!width ||width<1)
         return this;   
 
-    if (!pad) pad=" ";        
+    if (!pad) pad=" ";
     var length = width - this.length
     if (length < 1) return this.substr(0,width);
 
@@ -148,22 +148,23 @@ current_time.setHours(7);
 var schedule = {{ schedule_json|safe }};
 
 function set_times() {
+  var relative_time_slot;
   $("#current_time").html(current_time.formatDate("HH:mm"));
 
   for (var i in schedule) {
     slot = schedule[i];
-    // weird timezone correction? sigh
-    minutes_away = Math.floor(((new Date(slot.time.$date) - current_time) + 7 * 3600 * 1000) / (60 * 1000));
-    var t = '';
+    relative_time_slot = $("#time_slot_" + i).find(".you_relative_time");
+    minutes_away = Math.floor((new Date(slot.timestamp) - current_time) / 60000);
     if (minutes_away < 0) {
-      $("#time_slot_" + i).addClass("past");
-    } else {
-      $("#time_slot_" + i).removeClass("past");
+      relative_time_slot.addClass("past");
+      relative_time_slot.html(-minutes_away + " minutes ago");
+    } 
+    else {
+      relative_time_slot.removeClass("past");
       if (minutes_away < 60) {
-        t = "<div class='you_relative_time'>in " + minutes_away + " minutes</div>";
+        relative_time_slot.html("in " + minutes_away + " minutes"); 
       }
     }
-    $("#time_slot_" + i).find(".you_time").html(t);
   }
 }
 
@@ -197,7 +198,7 @@ window.setInterval(function() {
 {% block body %}
 
 <div id="header">
-Welcome {{ user.first_name }}! Current time is <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">set</a>
+Hello {{ user.first_name }}! The current time is <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">set</a>
 </div>
 
 <br style="clear: both;" />
@@ -206,8 +207,8 @@ Welcome {{ user.first_name }}! Current time is <span id="current_time"></span>. 
   {% for time_slot in schedule %}
     <div class="medication" id="time_slot_{{ forloop.counter0 }}">  
       <div>
-        <div class="you_time"></div>
-        <div class="you_absolute_time">@ {{ time_slot.time }}</div>
+	<div class="you_relative_time"></div>
+        <div class="you_absolute_time">{{ time_slot.time }}</div>
       </div>
       <div class="you_med">
         {% for med in time_slot.meds %}
@@ -216,33 +217,6 @@ Welcome {{ user.first_name }}! Current time is <span id="current_time"></span>. 
       </div>
     </div>
   {% endfor %}
-
-<!--  
-  <div class="medication">
-
-    <div>
-      <div class="you_relative_time">in 12 minutes</div>
-      <div class="you_absolute_time">@12:30 PM</div>
-    </div>
-    <div class="you_med">
-      <div><img src="http://placekitten.com/64/64" /><br />Zoloft</div>
-      <div><img src="http://placekitten.com/64/64" /><br />Azithromycin</div>
-    </div>
-  </div>
-
-  <div class="medication">
-    <div>
-      <div class="you_relative_time">5:30PM</div>
-      <div class="you_absolute_time">in 5 hours</div>
-    </div>
-    <div class="you_med">
-      <div><img src="http://placekitten.com/64/64" /><br />Zoloft</div>
-      <div><img src="http://placekitten.com/64/64" /><br />Zoloft</div>
-      <div><img src="http://placekitten.com/64/64" /><br />Azithromycin</div>
-    </div>
-
-  </div>
-  -->
 </div>
 
 <div class="pane right-pane" id="network">
