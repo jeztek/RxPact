@@ -53,11 +53,12 @@ def home(request, message=None):
             "meds" : [m.to_dict() for m in meds],
         })
 
-    user_network = UserNetwork.objects.filter(user=request.user).with_colors()
+    user_network = list(UserNetwork.objects.filter(user=request.user).with_colors())
+    network_to_show = [user_network[-1]] + user_network[0:3]
         
     return render_to_response('app_home.html', {
         'user'      : request.user,
-        'user_network' : user_network,
+        'user_network' : network_to_show,
         'message'   : message,
         'schedule'  : schedule,
         'schedule_json' : json.dumps(schedule, ensure_ascii=False),

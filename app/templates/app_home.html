@@ -67,28 +67,6 @@
   max-height: 100px;
 }
 
-#network_title {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-.network {
-  display: inline-block;
-  padding-right: 20px;
-  padding-bottom: 10px;
-  text-align: center;
-}
-
-.network img {
-  max-width: 100px;
-  max-height: 100px;
-}
-
-.network a {
-  font-size: 1em;
-  text-decoration: none;
-  color: #555;
-}
 
 .button {
   //vertical-align: middle;
@@ -139,6 +117,78 @@
 #post_msg_container{
   margin-top: 40px;
 }
+
+#network_title {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+.network {
+  margin-top: 15px;
+  display: inline-block;
+  padding-right: 0px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.network img {
+  max-width: 70px;
+  max-height: 70px;
+}
+
+.network a {
+  font-size: 1em;
+  text-decoration: none;
+  color: #555;
+}
+
+.network a img:hover {
+ border-bottom: 6px solid blue !important; 
+}
+
+.cats {
+  width: 500px;
+  height: 320px;  
+  background: url(/static/img/cats/cats4.jpg);
+}
+
+.bowls {
+  margin-left: 30px; 
+}
+
+.team {
+  margin-left: 20px; 
+  margin-top: 10px;
+}
+
+.bowl {
+  width: 110px;
+  height: 80px;
+  float: left;
+  background-size: 100px auto;
+  margin-bottom: 10px;
+}
+
+.bowl.full {
+  background: url(/static/img/bowls/bowl_full.jpg) no-repeat;  
+}
+
+.bowl.empty {
+  background: url(/static/img/bowls/bowl_empty.jpg) no-repeat;  
+}
+
+.bowl.empty:hover {
+  background: url(/static/img/bowls/bowl_empty_blue.jpg) no-repeat;
+  cursor: pointer;
+}
+
+.bowl.red, .bowl.red:hover {
+  background: url(/static/img/bowls/bowl_red.jpg) no-repeat; 
+  cursor: pointer;
+}
+
+.clearer {
+  clear: both;
 
 #congrats {
   display: none;
@@ -240,7 +290,9 @@ function set_times() {
     relative_time_slot = $("#time_slot_" + i).find(".you_relative_time");
     minutes_away = Math.ceil((new Date(slot.timestamp) - current_time) / 60000);
     if (minutes_away == 0) {
-        $("#action_" + i).removeClass("hidden");				      
+        $("#action_" + i).removeClass("hidden");
+        // tell the cat side that user 0 needs to start taking meds
+        // meds_start(0);
     }
     if (minutes_away < 0) {
       relative_time_slot.addClass("past");
@@ -263,6 +315,34 @@ function set_current() {
   current_time.setMinutes(parts[1]);
   set_times();
 }
+  
+var meowInterval; 
+
+function meds_fail(id) {
+  EvalSound('meow_hungry');
+  meowInterval = setInterval("EvalSound('meow_hungry')",3000);
+  $(".network#network_"+id+" .bowl").removeClass("full").addClass("empty").delay(5000).addClass("hungry");
+}
+
+function meds_success(id) {
+  clearInterval(meowInterval);
+  $(".network#network_"+id+" .bowl").removeClass("empty").removeClass("hungry").addClass("full");
+  EvalSound("pour_food");
+  add_cat();
+}
+
+function EvalSound(soundobj) {
+  var thissound=document.getElementById(soundobj);
+  thissound.Play();
+}
+
+function add_cat() {
+  var curr_num_cats = parseInt($(".cats").attr("data-num-cats"));
+  $(".cats").attr("data-num-cats", curr_num_cats + 1);
+  var new_num_cats = $(".cats").attr("data-num-cats");
+  $(".cats").css('backgroundImage','url(/static/img/cats/cats' + new_num_cats + '.jpg)');
+}
+
 
 jQuery(function() {
 
@@ -296,7 +376,7 @@ jQuery(function() {
     );
   });
 
-  $(".network a").click(function(e) {
+  $(".team a").click(function(e) {
     var id = this.id.split("_")[2];
     $("#msg_send").lightbox_me({
       centered: true,
@@ -309,8 +389,11 @@ jQuery(function() {
   $("#congrats_done").click(function(e) {
     $("#congrats").trigger("close");
     $("#time_slot_" + current_slot).css("display", "none");
-    // trigger cat bowl filling etc
-    
+    // tell the cat side that user 0 succeeded in taking their meds
+    meds_success({{ user.id }});
+
+    // now go into the portion where your friends take their meds
+    simulate_friends_taking_meds();
   });
 
   // set relative times
@@ -322,10 +405,39 @@ jQuery(function() {
     set_times();
   }, 10000);
 
+  // Flash Bowl Red if Cat Hungry
+  window.setInterval(function() {  
+    $(".bowl.hungry").toggleClass("red");    
+  }, 300);
+  
+
 });
 
+function simulate_friends_taking_meds() {
+
+  // chain two timers			
+  window.setTimeout(function() {
+    meds_success({{ user_network.2.link.id }});
+    window.setTimeout(function() {
+      meds_success({{ user_network.1.link.id }});
+      window.setTimeout(function() {
+        simulate_friends_forgetting_meds();
+      }, 10000);
+    }, 10000);
+  }, 10000);
+}
+
+function simulate_friends_forgetting_meds()  {
+  meds_fail({{ user_network.3.id }});
+}
 
 </script>
+
+<!-- Preload Sound Files -->
+<embed src="/static/sounds/pour_food.wav" autostart=false width=1 height=1 id="pour_food" enablejavascript="true">
+<embed src="/static/sounds/meow_hungry.wav" autostart=false width=1 height=1 id="meow_hungry" enablejavascript="true">
+
+<!-- <span onClick="meds_fail(2)">go</span> -->
 
 {% endblock head %}
 
@@ -366,14 +478,32 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
 <div class="pane right-pane" id="network">
 
-  <div id="network_title">My Network</div>
-  {% for entry in user_network %}
-    <div class="network" id="network_{{ entry.link.id }}">
-      <a href="#" id="network_imglink_{{ entry.link.id }}">
-      <img src="/static/img/avatars/medium/{{ entry.link.get_profile.picture_name }}" style="border-bottom: 6px solid {{ entry.color }}"/></a>
-      <br /><a href="#" id="network_namelink_{{ entry.link.id }}">{{ entry.link.first_name }}</a>
-    </div>
-  {% endfor %}
+  <div id="network_title">How Many Cats Can We Feed Today?</div>
+  
+  <div class="cats" data-num-cats="4"></div>
+  
+
+  <!-- <div class="bowls">
+    <div class="bowl full"></div>
+    <div class="bowl empty"></div>
+    <div class="bowl full"></div>
+    <div class="bowl empty hungry"></div>    
+  </div> -->
+ 
+  <div class="team">
+    {% for entry in user_network %}
+      <div class="network" id="network_{{ entry.link.id }}">
+        <a href="#" id="network_imglink_{{ entry.link.id }}">
+        <div class="bowl full"></div>
+        <br/>
+        <img src="/static/img/avatars/medium/{{ entry.link.get_profile.picture_name }}" style="border-bottom: 6px solid {{ entry.color }}"/></a>
+        <br />
+        {{ entry.link.first_name }}
+        </a>
+      </div>
+    {% endfor %}
+  </div>  
+  
 </div>
 
 <br style="clear: both;" />
@@ -388,7 +518,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 	<textarea id="msg_body"></textarea>
       </div>
 
-      <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
+      <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="#" onClick="$('#msg_send').trigger('close');" style="font-size: 0.8em">Cancel</a></span>
     </form>
   </div>
   <div id = "post_msg_container">
