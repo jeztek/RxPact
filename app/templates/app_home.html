@@ -235,7 +235,9 @@ function set_times() {
     relative_time_slot = $("#time_slot_" + i).find(".you_relative_time");
     minutes_away = Math.ceil((new Date(slot.timestamp) - current_time) / 60000);
     if (minutes_away == 0) {
-        $("#action_" + i).removeClass("hidden");				      
+        $("#action_" + i).removeClass("hidden");
+        // tell the cat side that user 0 needs to start taking meds
+        // meds_start(0);
     }
     if (minutes_away < 0) {
       relative_time_slot.addClass("past");
@@ -304,8 +306,8 @@ jQuery(function() {
   $("#congrats_done").click(function(e) {
     $("#congrats").trigger("close");
     $("#time_slot_" + current_slot).css("display", "none");
-    // trigger cat bowl filling etc
-    
+    // tell the cat side that user 0 succeeded in taking their meds
+    // meds_success(0);
   });
 
   // set relative times
