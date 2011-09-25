@@ -445,7 +445,7 @@ function simulate_friends_forgetting_meds()  {
 <embed src="/static/sounds/pour_food.wav" autostart=false width=1 height=1 id="pour_food" enablejavascript="true">
 <embed src="/static/sounds/meow_hungry.wav" autostart=false width=1 height=1 id="meow_hungry" enablejavascript="true">
 
-<span onClick="meds_fail(2)">go</span>
+<!-- <span onClick="meds_fail(2)">go</span> -->
 
 {% endblock head %}
 
@@ -526,7 +526,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 	<textarea id="msg_body"></textarea>
       </div>
 
-      <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
+      <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="#" onClick="$('#msg_send').trigger('close');" style="font-size: 0.8em">Cancel</a></span>
     </form>
   </div>
 </div>
