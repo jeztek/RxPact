@@ -358,13 +358,13 @@
 - fields: {phone: '6509062671', tz: US/Pacific, user: 2}
   model: account.userprofile
   pk: 2
-- fields: {name: Vitamin C, picture_name: null}
+- fields: {name: Vitamin C, picture_name: 200pxSyringe.jpg}
   model: account.medication
   pk: 1
-- fields: {name: Antibiotic, picture_name: null}
+- fields: {name: Antibiotic, picture_name: 200pxSyringe.jpg}
   model: account.medication
   pk: 2
-- fields: {name: Blood Thinner, picture_name: null}
+- fields: {name: Blood Thinner, picture_name: 200pxSyringe.jpg}
   model: account.medication
   pk: 3
 - fields: {name: insulin, picture_name: 200pxSyringe.jpg}

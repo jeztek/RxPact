@@ -23,8 +23,14 @@ dthandler = lambda obj: obj.isoformat() if isinstance(obj, datetime.datetime) or
 # Return JSON encoded representation of object as text response
 from bson import json_util
 def JsonResponse(obj):
-    return HttpResponse(json.dumps(obj, ensure_ascii=False, default=json_util.default),
+    return HttpResponse(json.dumps(obj, ensure_ascii=False,
+                                   default=json_util.default),
                         mimetype="text/plain; charset=\"utf-8\"")
+
+
+def flatten(listOfLists):
+    "Flatten one level of nesting"
+    return chain.from_iterable(listOfLists)
 
     
 @login_required
@@ -53,8 +59,4 @@ def home(request, message=None):
         'schedule'  : schedule,
         'schedule_json' : json.dumps(schedule, ensure_ascii=False, default=json_util.default),
     }, context_instance = RequestContext(request))
-
-def flatten(listOfLists):
-    "Flatten one level of nesting"
-    return chain.from_iterable(listOfLists)
 
