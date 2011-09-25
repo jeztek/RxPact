@@ -14,6 +14,7 @@ class UserProfile(models.Model):
 
 class Medication(models.Model):
     name = models.CharField(max_length=50)
+    picture_name = models.CharField(max_length=50)
 
     def __unicode__(self):
         return self.name
