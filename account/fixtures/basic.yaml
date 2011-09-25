@@ -16,7 +16,7 @@
 - fields: {medication: 3, user: 1}
   model: account.usermedication
   pk: 3
-- fields: {dosage: 100 Mg Capsule, dosage_count: 1, time_scheduled: '09:00:00', user_med: 1}
+- fields: {dosage: 100 Mg Capsule, dosage_count: 2, time_scheduled: '09:00:00', user_med: 1}
   model: account.usermedicationschedule
   pk: 1
 - fields: {dosage: 50 Mg Tablet, dosage_count: 1, time_scheduled: '09:00:00', user_med: 2}
