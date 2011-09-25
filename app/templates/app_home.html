@@ -103,14 +103,19 @@
 #msg_send {
   display: none;
   width: 280px;
-  height: 160px;
+  height: 280px;
   padding-top: 20px;
   background-color: #63A120;
 }
 
-#msg_send #msg_body {
+
+#msg_body #post_med_msg_body {
   width: 240px;
   height: 100px;
+}
+
+#post_msg_container{
+  margin-top: 40px;
 }
 
 #network_title {
@@ -194,6 +199,7 @@
   clear: both;
 }
 
+
 #a_new_cat {
  position: absolute;
  font-size: 18px;
@@ -226,6 +232,24 @@
   display: none; position: absolute; height: 400px; width: 400px; left: 50px;
 }
 
+
+#med_info {
+  display: none;
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  padding: 10px;
+}
+
+#med_info_container {
+  margin-top: 10px;
+  font-size: 0.9em;
+  text-align: left;
+}
+
+#med_info li {
+  margin-bottom: 5px;
+}
 
 </style>
 
@@ -318,10 +342,10 @@ function set_times() {
     slot = schedule[i];
     relative_time_slot = $("#time_slot_" + i).find(".you_relative_time");
     minutes_away = Math.ceil((new Date(slot.timestamp) - current_time) / 60000);
-    if (minutes_away == 0) {
+    if ((minutes_away == 0) && ($("#action_" + i).hasClass("hidden"))) {
         $("#action_" + i).removeClass("hidden");
         // tell the cat side that user 0 needs to start taking meds
-        // meds_start(0);
+        meds_fail({{ user.id }});
     }
     if (minutes_away < 0) {
       relative_time_slot.addClass("past");
@@ -355,7 +379,7 @@ function meds_fail(id) {
 
 function meds_success(id) {
   clearInterval(meowInterval);
-  $(".network#network_"+id+" .bowl").removeClass("empty").removeClass("hungry").addClass("full");
+  $(".network#network_"+id+" .bowl").removeClass("empty").removeClass("hungry").removeClass("red").addClass("full");
   EvalSound("pour_food");
   add_cat();
 }
@@ -431,6 +455,18 @@ jQuery(function() {
     );
   });
 
+  $(".med_image").click(function(e) {
+    $.getJSON('http://spl.anzonow.com/query?uri=http%3A//spl-ld.anzonow.com/data/Section1', function(data) {
+        $("#med_info_container").html(data.summary);
+        $("#med_info").lightbox_me({
+          centered: true,
+          onLoad: function() {
+            $("#med_info").corner("8px");
+          }
+        });
+     });
+  });
+
   $(".team a").click(function(e) {
     var id = this.id.split("_")[2];
     $("#msg_send").lightbox_me({
@@ -444,11 +480,16 @@ jQuery(function() {
   $("#congrats_done").click(function(e) {
     $("#congrats").trigger("close");
     $("#time_slot_" + current_slot).css("display", "none");
+
     // tell the cat side that user 0 succeeded in taking their meds
     meds_success({{ user.id }});
 
     // now go into the portion where your friends take their meds
     simulate_friends_taking_meds();
+  });
+
+  $("#med_info_done").click(function(e) {
+    $("#med_info").trigger("close");
   });
 
   // set relative times
@@ -472,18 +513,30 @@ function simulate_friends_taking_meds() {
 
   // chain two timers			
   window.setTimeout(function() {
-    meds_success({{ user_network.2.link.id }});
+
+    meds_fail({{ user_network.2.link.id }});
     window.setTimeout(function() {
-      meds_success({{ user_network.1.link.id }});
+
+      meds_success({{ user_network.2.link.id }});
       window.setTimeout(function() {
-        simulate_friends_forgetting_meds();
+
+        meds_fail({{ user_network.1.link.id }});
+        window.setTimeout(function() {
+
+          meds_success({{ user_network.1.link.id }});
+          window.setTimeout(function() {
+	  
+            simulate_friends_forgetting_meds();
+	  
+          }, 10000);
+        }, 5000);
       }, 10000);
-    }, 10000);
+    }, 5000);
   }, 10000);
 }
 
 function simulate_friends_forgetting_meds()  {
-  meds_fail({{ user_network.3.id }});
+  meds_fail({{ user_network.3.link.id }});
 }
 
 
@@ -579,7 +632,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
 <div id="msg_send">
   <div id="msg_container">
-    <div id="msg_title">Send a cheery message</div>
+    <div id="msg_title">Send a gentle reminder</div>
     <div id="msg_to"></div>
     <form action="#" method="post" onSubmit=RXPACT.sendSms()>
       {% csrf_token %}
@@ -590,6 +643,17 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
       <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="#" onClick="$('#msg_send').trigger('close');" style="font-size: 0.8em">Cancel</a></span>
     </form>
   </div>
+  <div id = "post_msg_container">
+	<div id="post_med_msg_title">Leave a message for after they take their meds</div>
+    <div id="post_med_msg_to"></div>
+	<form action="#" method="post" onSubmit=RXPACDT.savePostMedMsg()>
+		{% csrf_token %}
+		<div>
+			<textarea id="post_med_msg_body"></textarea>
+		</div>
+	    <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
+    </form>
+  </div>
 </div>
 
 <div id="congrats">
@@ -598,6 +662,15 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
   </div>
   <br/>
   <span><button id="congrats_done" type="submit">Done</button></span>
+</div>
+
+<div id="med_info">
+  <img src="http://spl.anzonow.com/images/novartislogosmall.png" />
+  <br class="clearer" />
+  <div id="med_info_container">
+
+  </div>
+  <div><button id="med_info_done" type="submit">Done</button></div>
 </div>
 {% endblock body %}
 
