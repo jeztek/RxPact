@@ -486,7 +486,7 @@ jQuery(function() {
 
   $("#congrats_done").click(function(e) {
     $("#congrats").trigger("close");
-    $("#time_slot_" + current_slot).css("display", "none");
+    $("#time_slot_" + current_slot).slideUp(2000);
 
     // tell the cat side that user 0 succeeded in taking their meds
     meds_success({{ user.id }});
@@ -670,7 +670,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
 <div id="congrats">
   <div id="congrats_container">
-    <div>Great job, you've attracted a new cat!</div>
+    <div>You took your meds! As a result, you've attracted a new cat!</div>
   </div>
   <br/>
   <span><button id="congrats_done" type="submit">Done</button></span>
