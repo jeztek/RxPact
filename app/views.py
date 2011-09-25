@@ -16,7 +16,7 @@ except:
 from django.contrib.auth.decorators import login_required
 
 from helpers import datetimeToEpochMilli, send_sms
-from account.models import UserNetwork
+from account.models import User, UserNetwork
 
 # Return JSON encoded representation of object as text response
 def JsonResponse(obj):
@@ -70,7 +70,22 @@ def done(request):
     return JsonResponse({"success" : True})
 
 
+@login_required
 def edit(request):
     return render_to_response('app_edit.html', {
     }, context_instance = RequestContext(request))
 
+
+@csrf_exempt
+def sms(request):
+# TODO: secure this
+    user_id = request.REQUEST['id'] if request.REQUEST.has_key('id') else 0
+    msg = request.REQUEST['msg'] if request.REQUEST.has_key('msg') else ''
+    
+    users = User.objects.filter(id=int(user_id))
+    if len(users) > 0:
+        phone = users[0].get_profile().phone
+        send_sms(phone, msg)
+        return JsonResponse({'success' : True})
+    
+    return JsonResponse({'success' : False})

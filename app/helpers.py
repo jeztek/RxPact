@@ -17,6 +17,7 @@ def epochMilliToString(millisec, timezone):
 def send_sms(to, msg):
     client = TwilioRestClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
+    print "SMS: " + to + " " + msg
     sms = client.sms.messages.create(to=to, from_=TWILIO_SMS_NUMBER,
                                      body=msg[:159])
 

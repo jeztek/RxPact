@@ -5,11 +5,9 @@
 <style>
 
 #header {
-//  text-align: left;
   margin-left: 6px;
   margin-top: 30px;
   font-size: 1em;
-//  margin: 0px auto;
 }
 
 .pane {
@@ -101,21 +99,31 @@
 }
 
 #msg_send {
+  border: 8px solid #444;
   display: none;
-  width: 280px;
-  height: 280px;
-  padding-top: 20px;
-  background-color: #63A120;
+  width: 300px;
+  height: 250px;
+  padding-top: 15px;
+  padding-left: 20px;
+  background-color: #fff;
+  text-align: left;
 }
 
-
-#msg_body #post_med_msg_body {
-  width: 240px;
-  height: 100px;
+#msg_send .msg_title {
+  color: #000;
+  font-size: 1.0em;
+  margin-bottom: 5px;
 }
 
-#post_msg_container{
-  margin-top: 40px;
+#msg_send textarea {
+  width: 275px;
+  height: 40px;
+  font-size: 1em;
+}
+
+#msg_send button {
+  font-size: 1.2em;
+  width: 100px;
 }
 
 #network_title {
@@ -344,19 +352,22 @@ function add_cat() {
   $(".cats").css('backgroundImage','url(/static/img/cats/cats' + new_num_cats + '.jpg)');
 }
 
-
+var RXPACT;
 jQuery(function() {
 
-  var RXPACT = RXPACT || {};
-
-  RXPACT.sendSms = function() {
-    $.post("/sms/", {
-      "id" : id,
-      "msg" : $("#msg_send #msg_body").html()
-    }, function(data) {
-      alert($("#msg_send #msg_body").html());
-    });
-  };			 
+  RXPACT = {
+    sendSms : function() {
+      $.post("/sms/", { 
+        "id" : 1,
+        "msg" : $("#remind_msg_body").val()
+      }, function(data) {
+        console.log("SMS sent!");
+      });
+      $("#remind_msg_body").val('');
+      $("#msg_send").trigger("close");
+      return false;
+    }
+  }
 
   $("#title").corner("bl br 5px");
   $("img").corner("8px");
@@ -383,6 +394,7 @@ jQuery(function() {
       centered: true,
       onLoad: function() {
         $("#msg_send").corner("8px");
+	$("#msg_send textarea:first").focus();
       }
     });
   });
@@ -447,15 +459,15 @@ function simulate_friends_forgetting_meds()  {
 
 </script>
 
+{% endblock head %}
+
+{% block body %}
+
 <!-- Preload Sound Files -->
 <embed src="/static/sounds/pour_food.wav" autostart=false width=1 height=1 id="pour_food" enablejavascript="true">
 <embed src="/static/sounds/meow_hungry.wav" autostart=false width=1 height=1 id="meow_hungry" enablejavascript="true">
 
 <!-- <span onClick="meds_fail(2)">go</span> -->
-
-{% endblock head %}
-
-{% block body %}
 
 <div id="header">
 It is currently <span id="current_time"></span>. <a href="javascript:set_current();" style="opacity: 0.25;">[set]</a>
@@ -495,7 +507,6 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
   <div id="network_title">How Many Cats Can We Feed Today?</div>
   
   <div class="cats" data-num-cats="4"></div>
-  
 
   <!-- <div class="bowls">
     <div class="bowl full"></div>
@@ -524,26 +535,21 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
 <div id="msg_send">
   <div id="msg_container">
-    <div id="msg_title">Send a gentle reminder</div>
-    <div id="msg_to"></div>
-    <form action="#" method="post" onSubmit=RXPACT.sendSms()>
+    <div class="msg_title" id="msg_title">Write a gentle reminder:</div>
+    <form action="#" method="post" onSubmit="return RXPACT.sendSms()">
       {% csrf_token %}
-      <div>
-	<textarea id="msg_body"></textarea>
-      </div>
+      <textarea id="remind_msg_body"></textarea>
 
-      <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="#" onClick="$('#msg_send').trigger('close');" style="font-size: 0.8em">Cancel</a></span>
-    </form>
-  </div>
-  <div id = "post_msg_container">
-	<div id="post_med_msg_title">Leave a message for after they take their meds</div>
-    <div id="post_med_msg_to"></div>
-	<form action="#" method="post" onSubmit=RXPACDT.savePostMedMsg()>
-		{% csrf_token %}
-		<div>
-			<textarea id="post_med_msg_body"></textarea>
-		</div>
-	    <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
+      <div class="msg_title" style="margin-top: 20px">
+	and a message they'll receive after<br />taking their meds:
+      </div>
+      <textarea id="post_med_msg_body"></textarea>
+
+      <div style="margin-top: 20px">
+	<button type="submit">Send</button>&nbsp;
+	<a href="#" onClick="$('#msg_send').trigger('close');" 
+	   style="font-size: 0.8em">Cancel</a>
+      </div>
     </form>
   </div>
 </div>

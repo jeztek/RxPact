@@ -4,4 +4,5 @@ urlpatterns = patterns('app.views',
     (r'^$', 'home'),
     (r'^done/$', 'done'),
     (r'^edit/$', 'edit'),
+    (r'^sms/$', 'sms'),
 )
