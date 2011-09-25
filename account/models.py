@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.template.defaultfilters import pluralize
 
 from forms import Timezone as TimezoneForm
 
@@ -32,6 +33,13 @@ class UserMedicationSchedule(models.Model):
 
     def __unicode__(self):
         return unicode(self.user_med) + " @ " + unicode(self.time_scheduled)
+
+    def to_dict(self):
+        return {
+            "name" : self.user_med.medication.name, 
+            "img" : '/img/%s.png' % self.user_med.medication.name.lower().replace(' ', ''),
+            "dose" : str(self.dosage_count) + " " + self.dosage + pluralize(self.dosage_count),
+            }
 
 class UserMedicationLog(models.Model):
     user_med = models.ForeignKey(UserMedication)

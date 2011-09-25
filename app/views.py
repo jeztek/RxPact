@@ -62,6 +62,6 @@ def meds(request):
     keyfunc = attrgetter('time_scheduled')    
     user_med_times = sorted(user_med_times, key=keyfunc)
     for (t, meds) in groupby(user_med_times, keyfunc):
-        schedule.append({ "time" : t, "meds" : [m.user_med.medication.name for m in meds]})
+        schedule.append({ "time" : t, "meds" : [m.to_dict() for m in meds]})
 
     return JsonResponse({'schedule' : schedule})
