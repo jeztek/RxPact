@@ -110,10 +110,19 @@ LOGIN_URL = "/account/login/"
 # Redirect URL if login is successful
 LOGIN_REDIRECT_URL = "/"
 
-# Import local settings at the end so they can override settings here
+# Import Twilio settings
+TWILIO_ACCOUNT_SID = ''
+TWILIO_AUTH_TOKEN = ''
+TWILIO_SMS_NUMBER = ''
 try:
-    from rxpact.local_settings import *
+    from twilio_settings import TWILIO_ACCOUNT_SID
+    from twilio_settings import TWILIO_AUTH_TOKEN
+    from twilio_settings import TWILIO_SMS_NUMBER
 except:
     pass
 
-
+# Import local settings at the end so they can override settings here
+try:
+    from local_settings import *
+except:
+    pass
