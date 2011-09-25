@@ -311,8 +311,22 @@ function set_current() {
   set_times();
 }
 
+function meds_success(id) {
+  $(".network#network_"+id+" .bowl").removeClass("empty").addClass("full");
+  EvalSound("pour_food");
+  add_cat();
+}
+
+function EvalSound(soundobj) {
+  var thissound=document.getElementById(soundobj);
+  thissound.Play();
+}
+
 function add_cat() {
-  $(".cats").attr("data-num-cats", 10);
+  var curr_num_cats = parseInt($(".cats").attr("data-num-cats"));
+  $(".cats").attr("data-num-cats", curr_num_cats + 1);
+  var new_num_cats = $(".cats").attr("data-num-cats");
+  $(".cats").css('backgroundImage','url(/static/img/cats/cats' + new_num_cats + '.jpg)');
 }
 
 
@@ -362,7 +376,7 @@ jQuery(function() {
     $("#congrats").trigger("close");
     $("#time_slot_" + current_slot).css("display", "none");
     // tell the cat side that user 0 succeeded in taking their meds
-    // meds_success(0);
+    meds_success({{ user.id }});
 
     // now go into the portion where your friends take their meds
     simulate_friends_taking_meds();
@@ -377,16 +391,11 @@ jQuery(function() {
     set_times();
   }, 10000);
 
-    
-
   // Flash Bowl Red if Cat Hungry
   window.setInterval(function() {  
     $(".bowl.hungry").toggleClass("red");    
   }, 300);
   
-  add_cat();
-  
-
 });
 
 function simulate_friends_taking_meds() {
@@ -407,8 +416,12 @@ function simulate_friends_forgetting_meds()  {
   meds_fail({{ user_network.3.id }});
 }
 
-
 </script>
+
+<!-- Preload Sound Files -->
+<embed src="/static/sounds/pour_food.wav" autostart=false width=1 height=1 id="pour_food" enablejavascript="true">
+<embed src="/static/sounds/meow_hungry.wav" autostart=false width=1 height=1 id="meow_hungry" enablejavascript="true">
+<!-- <span onClick="EvalSound('sound1')">pour</span> -->
 
 {% endblock head %}
 
@@ -465,7 +478,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
     {% for entry in user_network %}
       <div class="network" id="network_{{ entry.link.id }}">
         <a href="#" id="network_imglink_{{ entry.link.id }}">
-        <div class="bowl full"></div>
+        <div class="bowl empty"></div>
         <br/>
         <img src="/static/img/avatars/medium/{{ entry.link.get_profile.picture_name }}" style="border-bottom: 6px solid {{ entry.color }}"/></a>
         <br />
