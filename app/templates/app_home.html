@@ -368,6 +368,12 @@ function set_current() {
   current_time.setMinutes(parts[1]);
   set_times();
 }
+
+function set_time_to(h, m) {
+  current_time.setHours(h);
+  current_time.setMinutes(m);
+  set_times();
+}
   
 var meowInterval; 
 
@@ -519,6 +525,7 @@ function simulate_friends_taking_meds() {
     window.setTimeout(function() {
 
       meds_success({{ user_network.2.link.id }});
+      set_time_to(11, 55);
       window.setTimeout(function() {
 
         meds_fail({{ user_network.1.link.id }});
@@ -526,7 +533,8 @@ function simulate_friends_taking_meds() {
 
           meds_success({{ user_network.1.link.id }});
           window.setTimeout(function() {
-	  
+
+            set_time_to(17, 43);	  
             simulate_friends_forgetting_meds();
 	  
           }, 10000);
@@ -573,7 +581,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
       </div>
       <table>
 	<tr>
-	  <td style="min-width: 50px;">
+	  <td style="min-width: 57px;">
 	    <div id="action_{{ forloop.counter0 }}" class="hidden">
 	      <a href="#" class="button" id="button_{{ forloop.counter0 }}">Done</a>
 	    </div>
