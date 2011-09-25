@@ -294,31 +294,31 @@
     user: 1}
   model: admin.logentry
   pk: 1
-- fields: {phone: '6509062671', tz: US/Pacific, user: 1, picture_name: male1.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 1, picture_name: male1.jpg, score: 75}
   model: account.userprofile
   pk: 1
-- fields: {phone: '6509062671', tz: US/Pacific, user: 2, picture_name: female1.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 2, picture_name: female1.jpg, score: 100}
   model: account.userprofile
   pk: 2
-- fields: {phone: '6509062671', tz: US/Pacific, user: 3, picture_name: male3.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 3, picture_name: male3.jpg, score: 70}
   model: account.userprofile
   pk: 3
-- fields: {phone: '6509062671', tz: US/Pacific, user: 4, picture_name: male4.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 4, picture_name: male4.jpg, score: 90}
   model: account.userprofile
   pk: 4
-- fields: {phone: '6509062671', tz: US/Pacific, user: 5, picture_name: male5.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 5, picture_name: male5.jpg, score: 100}
   model: account.userprofile
   pk: 5
-- fields: {phone: '6509062671', tz: US/Pacific, user: 6, picture_name: male6.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 6, picture_name: male6.jpg, score: 20}
   model: account.userprofile
   pk: 6
-- fields: {phone: '6509062671', tz: US/Pacific, user: 7, picture_name: female7.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 7, picture_name: female7.jpg, score: 80}
   model: account.userprofile
   pk: 7
-- fields: {phone: '6509062671', tz: US/Pacific, user: 8, picture_name: male8.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 8, picture_name: male8.jpg, score: 100}
   model: account.userprofile
   pk: 8
-- fields: {phone: '6509062671', tz: US/Pacific, user: 9, picture_name: female9.jpg}
+- fields: {phone: '6509062671', tz: US/Pacific, user: 9, picture_name: female9.jpg, score: 95}
   model: account.userprofile
   pk: 9
 - fields: {name: Vitamin C, picture_name: 200pxSyringe.jpg}
@@ -733,4 +733,7 @@
 - fields: {user: 2, link: 9}
   model: account.usernetwork
   pk: 8
+- fields: {user: 2, link: 2}
+  model: account.usernetwork
+  pk: 9
 
