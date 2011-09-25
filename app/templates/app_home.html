@@ -121,6 +121,8 @@
 #network_title {
   font-size: 1.8em;
   margin-bottom: 20px;
+  z-index: 10;
+  position: absolute;
 }
 
 .network {
@@ -150,6 +152,12 @@
   width: 500px;
   height: 320px;  
   background: url(/static/img/cats/cats4.jpg);
+}
+
+.cats_and_team{
+  position: relative;
+  top: -30px;
+  z-index: 0; 
 }
 
 .bowls {
@@ -191,12 +199,56 @@
   clear: both;
 }
 
+
+#a_new_cat {
+ position: absolute;
+ font-size: 18px;
+ background-color: green;
+ color: white;
+ text-align: center; 
+ padding: 10px;
+ -moz-border-radius: 5px;
+ border-radius: 5px;
+ top: 70px;
+ display:inline-block;
+ display: none;
+ left: 160px;
+/* display: none;*/
+}
+
+
 #congrats {
   // display: none;
   width: 500px;
-  height: 150px;
+  height: 100px;
   padding-top: 20px;
   background-color: #63A120;
+  color: white;
+  font-size: 18px;
+}
+
+
+.reset_kitten {
+  display: none; position: absolute; height: 400px; width: 400px; left: 50px;
+}
+
+
+#med_info {
+  display: none;
+  width: 600px;
+  height: 600px;
+  background-color: white;
+  padding: 10px;
+}
+
+#med_info_container {
+  margin-top: 10px;
+  font-size: 0.9em;
+  text-align: left;
+}
+
+#med_info li {
+  margin-bottom: 5px;
 }
 
 #congrats img {
@@ -321,6 +373,12 @@ function set_current() {
   current_time.setMinutes(parts[1]);
   set_times();
 }
+
+function set_time_to(h, m) {
+  current_time.setHours(h);
+  current_time.setMinutes(m);
+  set_times();
+}
   
 var meowInterval; 
 
@@ -343,12 +401,39 @@ function EvalSound(soundobj) {
 }
 
 function add_cat() {
-  var curr_num_cats = parseInt($(".cats").attr("data-num-cats"));
-  $(".cats").attr("data-num-cats", curr_num_cats + 1);
-  var new_num_cats = $(".cats").attr("data-num-cats");
-  $(".cats").css('backgroundImage','url(/static/img/cats/cats' + new_num_cats + '.jpg)');
+  animate_cat();
 }
 
+function animate_cat() {
+  // $("#a_new_cat").fadeIn();
+  $("#cat").show();
+  $('#cat').animate({
+    opacity: 10,
+    // left: '+=50',
+    height: '120',
+    width: '120',
+    top: '140',
+    left: '200',
+    // margin: '200 0 0 0',
+    display: 'block'
+  }, 2000, function() {
+    // Animation complete.
+    $('#cat').css("height","400");
+    $('#cat').css("width","400");
+    $('#cat').css("opacity","1");
+    $('#cat').css("top","0");
+    $('#cat').css("left","50"); 
+
+    $('#cat').css("display","none");  
+    // $("#a_new_cat").fadeOut();  
+    
+    var curr_num_cats = parseInt($(".cats").attr("data-num-cats"));
+    $(".cats").attr("data-num-cats", curr_num_cats + 1);
+    var new_num_cats = $(".cats").attr("data-num-cats");
+    $(".cats").css('backgroundImage','url(/static/img/cats/cats' + new_num_cats + '.jpg)');
+            
+  });
+}  
 
 jQuery(function() {
 
@@ -382,6 +467,18 @@ jQuery(function() {
     );
   });
 
+  $(".med_image").click(function(e) {
+    $.getJSON('http://spl.anzonow.com/query?uri=http%3A//spl-ld.anzonow.com/data/Section1', function(data) {
+        $("#med_info_container").html(data.summary);
+        $("#med_info").lightbox_me({
+          centered: true,
+          onLoad: function() {
+            $("#med_info").corner("8px");
+          }
+        });
+     });
+  });
+
   $(".team a").click(function(e) {
     var id = this.id.split("_")[2];
     $("#msg_send").lightbox_me({
@@ -403,6 +500,10 @@ jQuery(function() {
     simulate_friends_taking_meds();
   });
 
+  $("#med_info_done").click(function(e) {
+    $("#med_info").trigger("close");
+  });
+
   // set relative times
   set_times();
 
@@ -416,7 +517,7 @@ jQuery(function() {
   window.setInterval(function() {  
     $(".bowl.hungry").toggleClass("red");    
   }, 300);
-  
+
 
 });
 
@@ -429,6 +530,7 @@ function simulate_friends_taking_meds() {
     window.setTimeout(function() {
 
       meds_success({{ user_network.2.link.id }});
+      set_time_to(11, 55);
       window.setTimeout(function() {
 
         meds_fail({{ user_network.1.link.id }});
@@ -436,7 +538,8 @@ function simulate_friends_taking_meds() {
 
           meds_success({{ user_network.1.link.id }});
           window.setTimeout(function() {
-	  
+
+            set_time_to(17, 43);	  
             simulate_friends_forgetting_meds();
 	  
           }, 10000);
@@ -450,6 +553,8 @@ function simulate_friends_forgetting_meds()  {
   meds_fail({{ user_network.3.link.id }});
 }
 
+
+
 </script>
 
 <!-- Preload Sound Files -->
@@ -457,6 +562,10 @@ function simulate_friends_forgetting_meds()  {
 <embed src="/static/sounds/meow_hungry.wav" autostart=false width=1 height=1 id="meow_hungry" enablejavascript="true">
 
 <!-- <span onClick="meds_fail(2)">go</span> -->
+
+<!-- <div id="clickme">
+  Click here
+</div> -->
 
 {% endblock head %}
 
@@ -477,7 +586,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
       </div>
       <table>
 	<tr>
-	  <td style="min-width: 50px;">
+	  <td style="min-width: 57px;">
 	    <div id="action_{{ forloop.counter0 }}" class="hidden">
 	      <a href="#" class="button" id="button_{{ forloop.counter0 }}">Done</a>
 	    </div>
@@ -499,16 +608,23 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 
   <div id="network_title">How Many Cats Can We Feed Today?</div>
   
-  <div class="cats" data-num-cats="4"></div>
-  
+  <div class="cats_and_team" style="position: relative;">
+    
+    <!-- <div id="a_new_cat">Yay! A new cat!</div> -->
+    <div id="cat" style="display: none; position: absolute; height: 400px; width: 400px; left: 50px;" >
+      <img src="/static/img/cats/kitten.png"/>
+    </div>
+    
+    <div class="cats" data-num-cats="4"></div>
 
-  <!-- <div class="bowls">
-    <div class="bowl full"></div>
-    <div class="bowl empty"></div>
-    <div class="bowl full"></div>
-    <div class="bowl empty hungry"></div>    
-  </div> -->
+    <!-- <div class="bowls">
+      <div class="bowl full"></div>
+      <div class="bowl empty"></div>
+      <div class="bowl full"></div>
+      <div class="bowl empty hungry"></div>    
+    </div> -->
  
+
   <div class="team">
     {% for entry in user_network %}
       <div class="network" id="network_{{ entry.link.id }}">
@@ -548,7 +664,7 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 		<div>
 			<textarea id="post_med_msg_body"></textarea>
 		</div>
-	    <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="." style="font-size: 0.8em">Cancel</a></span>
+	    <span><button type="submit">Send</button>&nbsp;&nbsp;<a href="$('#msg_send').trigger('close');" style="font-size: 0.8em">Cancel</a></span>
     </form>
   </div>
 </div>
@@ -561,9 +677,18 @@ It is currently <span id="current_time"></span>. <a href="javascript:set_current
 		left you a message:
 	</div>
 	<div id = "post_med_reward_msg"> Glad you took your meds, mom. Here's a new pic of JJ. He says, "I can't wait to see you on Friday, Grandma."</div>
-	<img src="static/imgs/post_med/jj.jpg" />	</div>
+	<img src="static/img/post_med/jj.jpg" />	</div>
   </div>
   <span><button id="congrats_done" type="submit">Close</button></span>
+</div>
+
+<div id="med_info">
+  <img src="http://spl.anzonow.com/images/novartislogosmall.png" />
+  <br class="clearer" />
+  <div id="med_info_container">
+
+  </div>
+  <div><button id="med_info_done" type="submit">Done</button></div>
 </div>
 {% endblock body %}
 
