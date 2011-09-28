@@ -1,10 +1,12 @@
-=== RxPact ===
+=== About ===
+RxPact: Social medication adherence with kittens.  
 Friends Say: Take Your Meds Meow!
 
+=== Authors ===
 Sean Ahrens	@seanahrens, http://seanahrens.net
-Paul Resnick	http://presnick.people.si.umich.edu
-Eric Park	@jeztek, http://www.jeztek.com
 Alex Khomenko	@akhomenko
+Eric Park	@jeztek, http://www.jeztek.com
+Paul Resnick	http://presnick.people.si.umich.edu
 
 === Dependencies ===
 pytz
