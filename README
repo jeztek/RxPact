@@ -12,3 +12,17 @@ Paul Resnick	http://presnick.people.si.umich.edu
 pytz
 pyyaml
 twilio
+
+
+=== Notes on current state ===
+This project was created at the Health 2.0 developer challenge, in September 2011. We won the $3000 Novartis prize. Blog post about the experience at []
+
+Each user has a database of daily event medications to take. Their friends or family are invited to monitor their adherence and send them friendly reminders. Cute kitten pictures are everythwere.
+
+Some of the current state is hardwired to make a good demo. In particular, there's a simulation of time passing faster than in real time, and friends taking their meds, which causes kittens to appear. Also, the "social message" to grandma with the cute picture (of Paul Resnick's son) that is unlocked after taking the first med dosage is hard-coded in, not served from a database.
+
+This project uses django. You'll need to install that. You'll also need to create/configure settings.py (the django settings file) and twilio_settings.py (for sending the SMS messages).
+
+A good way to get started is to actually run the demo, following along with the script in demo_script.txt. Load the fixture in account/fixtures/demo.yaml. You'll have to log in as martha.landis (use the django admin interface to set her password if you need to; I didn't remember it and changed it on my local machine). 
+
+IMPORTANT ALERT: assuming you are running this on localhost, you need to set the timezone for martha.landis to your computer's timezone! If you're running this on a server, you may need to think through timezone issues (web browser's timezone vs. server's timezone). For running the demo, it shouldn't matter what the timezone setting in settings.py is.
